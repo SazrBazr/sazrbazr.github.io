@@ -102,6 +102,12 @@ header {
     color: #4682b4;
     cursor: pointer;
 }
+#shareButton{
+    margin-top: 5%;
+    width: 55%;
+    height: 20%;
+    font-size: 30px;
+}
 
 /* About Me Section Styling */
 #AboutMe {
