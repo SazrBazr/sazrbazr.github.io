@@ -104,7 +104,7 @@ function closeAlert() {
 function shareResults() {
     const element = document.getElementById('responseAlert');
     if (element) {  // Check if the element exists
-        html2canvas(element)
+        html2canvas(element, {scale: 4})
             .then(canvas => {
                 canvas.toBlob(blob => {
                     if (navigator.share) {
