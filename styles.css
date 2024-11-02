@@ -1,0 +1,335 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Comic Sans MS', sans-serif; /* Cute font choice */
+    background-color: #E1ECF7; /* Light blue background */
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background: linear-gradient(to right, #AECBEB, #83B0E1); /* Blue gradient */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-bottom: 5px solid #71a5de; /* Darker blue border */
+    color: #333;
+    padding: 20px;
+    text-align: center;
+}
+
+.emailDiv {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.email-span {
+    background-color: #E1ECF7;
+    padding: 8px 12px;
+    border: 2px solid #83B0E1;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    font-size: 18px;
+}
+
+.email-input {
+    padding: 8px;
+    background-color: #E1ECF7;
+    border: 2px solid #83B0E1;
+    border-right: none;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    flex: 1;
+    font-size: 18px;
+}
+
+/* Modal background overlay */
+.cute-modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Modal content box */
+.cute-modal-content {
+    max-width: 400px;
+    padding: 20px;
+    background-color: #e0f4ff; /* Light blue for modal */
+    border: 2px solid #71A5DE; /* Lighter blue border */
+    color: #4682b4; /* Darker blue for text */
+    font-family: 'Comic Sans MS', 'Comic Sans';
+    border-radius: 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    position: relative;
+}
+
+.cute-modal-content .icon {
+    font-size: 30px;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.cute-modal-content h3 {
+    font-size: 1.3em;
+    margin: 0 0 10px;
+}
+
+.cute-modal-content p {
+    font-size: 1em;
+    margin: 0;
+}
+
+/* Close button styling */
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #4682b4;
+    cursor: pointer;
+}
+
+/* About Me Section Styling */
+#AboutMe {
+    padding: 20px;
+}
+
+#AboutMe h2 {
+    font-size: 1.8em;
+    color: #4682b4; /* Darker blue */
+    margin-bottom: 10px;
+}
+
+.about-me-card ul {
+    list-style: none; /* Remove default list styling */
+    padding: 0;
+}
+
+.about-me-card ul li {
+    font-size: 1.2em;
+    margin: 20px 0px;
+    color: #333;
+    position: relative;
+}
+
+section {
+    padding: 20px;
+    text-align: center; /* Center text for cuteness */
+}
+
+h2 {
+    color: #4682b4; /* Darker blue */
+}
+
+.bonding-question h3 {
+    color: #4682b4; /* Darker blue */
+}
+
+p {
+    font-size: 1.1em;
+}
+
+button {
+    background-color: #4682b4; /* Blue button */
+    color: white;
+    border: none;
+    border-radius: 5px; /* Rounded corners */
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 20px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+button:hover {
+    background-color: #4169e1; /* Darker shade on hover */
+    transform: scale(1.05);
+}
+
+.custom-heart {
+    display: flex;
+    align-items: center;
+    cursor: pointer; /* Pointer on hover */
+}
+
+.heart-radio {
+    margin-right: 10px; /* Space between heart and text */
+    transition: fill 0.3s; /* Smooth transition */
+}
+
+/* Form Styling */
+#bondingForm {
+    background-color: #E1ECF7; /* Light blue form background */
+    border-radius: 10px; /* Rounded corners */
+    padding: 20px; /* Padding around the form */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Adds a slight shadow for depth */
+    border: 5px solid #71A5DE; /* Blue border */
+    max-width: 500px; /* Max width for better readability */
+    margin: 20px auto; /* Center the form on the page */
+}
+
+.bonding-question {
+    margin-bottom: 15px; /* Space between questions */
+}
+
+.bonding-question h3 {
+    margin-bottom: 5px; /* Space between question text and textarea */
+}
+
+textarea {
+    width: 100%; /* Full width */
+    padding: 10px; /* Padding inside textarea */
+    border: 2px solid #4682b4; /* Border color */
+    border-radius: 5px; /* Rounded corners */
+    resize: none; /* Disable resizing */
+    background-color: #fff; /* Light background for text area */
+    font-size: 15px;
+    font-family: 'Comic Sans MS', sans-serif; /* Match the font */
+    resize: vertical;
+}
+
+textarea:focus {
+    outline: none; /* Remove outline on focus */
+    border-color: #4169e1; /* Change border color on focus */
+    box-shadow: 0 0 5px rgba(65, 105, 225, 0.5); /* Add shadow effect */
+}
+
+button[type="submit"] {
+    display: block; /* Make button block-level */
+    width: 100%; /* Full width for button */
+    margin-top: 15px; /* Space above button */
+}
+
+/* Quiz Styling */
+.quiz-wrapper {
+    background-color: #E1ECF7; /* Light blue */
+    padding: 20px;
+    border-radius: 15px;
+    max-width: 600px;
+    margin: 0 auto;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Adds a slight shadow for depth */
+    border: 5px solid #71A5DE; /* Blue border */
+}
+
+.quiz-button {
+    width: fit-content;
+    padding: 15px;
+}
+
+.quiz-question {
+    margin: 30px auto;
+    width: 100%; /* Full width */
+    max-width: 500px; /* Max width for readability */
+    padding: 20px;
+    background-color: #AECBEB; /* Match form background */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4); /* Subtle shadow */
+}
+
+.quiz-question h3 {
+    margin-bottom: 10px; /* Space between question text and options */
+}
+
+#quizForm {
+    align-items: center;
+}
+
+footer {
+    text-align: center;
+    margin-top: 50px;
+    padding: 20px; /* More padding for the footer */
+    background: #649eff; /* Blue footer */
+    font-size: 1.2em;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Light shadow */
+}
+
+.quiz-card {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    background-color: #E1ECF7;
+}
+
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.about-me-card, .quiz-card {
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #E1ECF7;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Adds a slight shadow for depth */
+    border: 5px solid #71A5DE; /* Blue border */
+    max-width: 500px;
+    margin: 0 auto;
+    margin-bottom: 10px;
+}
+
+.remove-btn {
+    background-color: #ff6b6b;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.remove-btn:hover {
+    background-color: #ff4b4b;
+}
+
+.add-btn, .generate-btn {
+    background-color: #71A5DE;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.add-btn:hover, .generate-btn:hover {
+    background-color: #45a049;
+}
+
+.textarea-container{
+    background-color: #AECBEB;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+
+/* Responsive Styles */
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 1.8em; /* Adjust header size */
+    }
+
+    h2 {
+        font-size: 1.5em;
+    }
+    button {
+        font-size: 1.3em; /* Slightly smaller button text on small screens */
+    }
+    textarea {
+        font-size: 1.1em; /* Match textarea font size to button */
+    }
+    .custom-heart {
+        font-size: 1.1em;
+    }
+}

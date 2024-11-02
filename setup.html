@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Setup Your Profile</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Welcome to Your Profile!</h1>
+        <h3>Generate personalized forms and quizzes to get closer!</h3>
+    </header>
+
+    <div class="container">
+
+        <section id="emailSection" class="form-section">
+            <h2>Enter your Email here:</h2>
+            <div class="about-me-card">
+                <h3>Enter your Email here to get the responses</h3>
+                <div class="emailDiv">
+                    <input class="form-field email-input" type="email" placeholder="Email">
+                    <span class="email-span">@gmail.com</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Me Section -->
+        <section id="aboutMeSection" class="form-section">
+            <h2>About Me</h2>
+            <div id="text-container" class="textarea-container">
+                <!-- Each About Me item will be added here in card format -->
+                <div class="about-me-card">
+                    <textarea placeholder="Enter a detail about yourself..."></textarea>
+                </div>
+            </div>
+            <button class="add-btn" onclick="addAboutMe()">+ Add Another Detail</button>
+        </section>
+
+        <!-- Quiz Setup Section -->
+        <section id="quizSection" class="form-section">
+            <h2>Create a Quiz</h2>
+            <div class="textarea-container" id="quiz-questions">
+                <div class="quiz-card">
+                    <div class="quiz-item">
+                        <textarea placeholder="Quiz Question" rows="2"></textarea>
+                        <div class="answer-inputs">
+                            <textarea placeholder="Answer 1"></textarea>
+                            <textarea placeholder="Answer 2"></textarea>
+                            <textarea placeholder="Answer 3"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="add-btn" onclick="addQuizSection()">+ Add Another Question</button>
+        </section>        
+
+        <!-- Generate URL Button -->
+        <button class="generate-btn" onclick="generateURL()">Generate Profile</button>
+    </div>
+
+    <footer>
+        <p>© 2024 Sari</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
