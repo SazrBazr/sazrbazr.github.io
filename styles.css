@@ -307,10 +307,17 @@ footer {
     background-color: #45a049;
 }
 
+.textarea-container-first{
+    background-color: #AECBEB;
+    padding: 20px;
+    border-radius: 10px;
+}
+
 .textarea-container{
     background-color: #AECBEB;
     padding: 20px;
     border-radius: 10px;
+    margin-top: 20px;
 }
 
 
