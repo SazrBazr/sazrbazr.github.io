@@ -1,3 +1,5 @@
+const correctAnswers = {};
+
 function displayContent() {
     const urlParams = new URLSearchParams(window.location.search);
 
@@ -12,48 +14,81 @@ function displayContent() {
     const quizData = JSON.parse(urlParams.get('quiz') || '[]');
     const quizDisplay = document.getElementById('filled-questions');
     quizData.forEach((quizItem, index) => {
-        const question = quizItem.question; // Get the question text
-        const answers = quizItem.answers; // Get the array of answers
-        const correctAnswerIndex = quizItem.correctAnswerIndex; // Correct answer index
+        const question = quizItem.question;
+        const answers = quizItem.answers;
+        const correctAnswerIndex = quizItem.correctAnswerIndex;
 
         const questionDiv = document.createElement('div');
         questionDiv.classList.add('quiz-question');
-        questionDiv.innerHTML = `
-            <h3>${index + 1}. ${decodeURIComponent(question)}:</h3>
-            ${answers.map((answer, idx) => `
-                <label class="custom-heart">
-                    <input type="radio" name="question${index}" value="${decodeURIComponent(answer)}" hidden ${decodeURIComponent(correctAnswerIndex) === idx ? 'checked' : ''}>
-                    <svg width="24" height="24" viewBox="0 0 24 24" class="heart-radio" onclick="selectRadio('question${index}', '${decodeURIComponent(answer)}', this);">
-                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="white" stroke="#ff5722" stroke-width="2"/>
-                    </svg>
-                    ${decodeURIComponent(answer)}
-                </label><br>
-            `).join('')}
-        `;
+        const ques = document.createElement('h3');
+        ques.textContent = decodeURIComponent(question);
+        questionDiv.appendChild(ques);
+
+        answers.forEach((answer, idx) => {
+            const label = document.createElement('label');
+            label.classList.add('custom-heart');
+            const input = document.createElement('input');
+            input.type = 'radio';
+            input.name = 'question' + (index + 1);
+            input.value = decodeURIComponent(answer);
+            input.hidden = true;
+
+            // Check if the current answer is the correct one
+            if (correctAnswerIndex === idx) {
+                correctAnswers['question' + (index + 1)] = decodeURIComponent(answer);
+            }
+
+            label.appendChild(input);
+
+            // SVG and heart icon handling
+            const svgNamespace = "http://www.w3.org/2000/svg";
+            const svg = document.createElementNS(svgNamespace, "svg");
+            svg.setAttribute("class", "heart-radio");
+            svg.setAttribute("width", "24");
+            svg.setAttribute("height", "24");
+            svg.onclick = function() {
+                selectRadio('question' + (index + 1), decodeURIComponent(answer), svg);
+            };
+
+            const path = document.createElementNS(svgNamespace, "path");
+            path.setAttribute("d", "M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z");
+            path.setAttribute("fill", "white");
+            path.setAttribute("stroke", "#FE251B");
+            path.setAttribute("stroke-width", "2");
+
+            svg.appendChild(path);
+            label.appendChild(svg);
+            label.appendChild(document.createTextNode(decodeURIComponent(answer)));
+            questionDiv.appendChild(label);
+            questionDiv.appendChild(document.createElement('br'));
+        });
+
         quizDisplay.appendChild(questionDiv);
     });
+
+    // Log correctAnswers to check if it's populated
+    console.log("Correct Answers:", correctAnswers);
 }
 
+
 function selectRadio(questionName, value, svgElement) {
+    // Check the radio button
     const radioButton = document.querySelector(`input[name="${questionName}"][value="${value}"]`);
     if (radioButton) {
         radioButton.checked = true;
     }
 
+    // Get all SVGs in the same question to reset their fill color
     const svgs = document.querySelectorAll(`input[name="${questionName}"] + svg`);
     svgs.forEach(svg => {
-        svg.querySelector('path').setAttribute('fill', 'white');
+        svg.querySelector('path').setAttribute('fill', 'white'); // Reset fill to white
     });
 
-    svgElement.querySelector('path').setAttribute('fill', '#ff5722');
+    // Change the fill color of the selected heart
+    svgElement.querySelector('path').setAttribute('fill', '#FF4033'); // Change fill color to selected
 }
 
 function checkAnswers() {
-    const correctAnswers = {
-        question0: "Iceland",
-        question1: "Dog",
-        question2: "ComputerScience" // Change these as per your quiz
-    };
     let score = 0;
 
     for (let question in correctAnswers) {

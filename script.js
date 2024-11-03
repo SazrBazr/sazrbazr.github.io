@@ -92,10 +92,8 @@ function generateURL() {
         // Get all answer options for this question
         const answers = [...quizItem.querySelectorAll('.answer')].map(answer => encodeURIComponent(answer.value));
         
-        // Find the selected answer and determine its index
-        const selectedRadio = quizItem.querySelector('input[type="radio"]:checked');
-        const correctAnswerIndex = selectedRadio ? answers.indexOf(encodeURIComponent(selectedRadio.value)) : null;
-        
+        const correctAnswerIndex = [...quizItem.querySelectorAll('input')].findIndex(input => input.checked);
+
         return {
             question: question,
             answers: answers,
