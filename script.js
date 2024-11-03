@@ -33,6 +33,7 @@ function addQuizSection() {
     quizItem.classList.add('quiz-item');
 
     const questionBox = document.createElement('textarea');
+    questionBox.classList.add('question');
     questionBox.placeholder = 'Quiz Question';
     quizItem.appendChild(questionBox);
 
@@ -48,6 +49,7 @@ function addQuizSection() {
         answerContainer.appendChild(answerRadio);
 
         const answerBox = document.createElement('textarea');
+        answerBox.classList.add('answer');
         answerBox.placeholder = `Answer ${i}`;
         answerContainer.appendChild(answerBox);
 
@@ -79,27 +81,34 @@ function generateURL() {
     const aboutMeTexts = [...document.querySelectorAll('#aboutMeSection textarea')];
     const quizItems = [...document.querySelectorAll('.quiz-item')];
 
+    // Map each textarea value to an encoded array for "aboutMe" data
     const aboutMeData = aboutMeTexts.map(textarea => encodeURIComponent(textarea.value));
+    
+    // Map each quiz item to structured "quizData"
     const quizData = quizItems.map(quizItem => {
-        const texts = [...quizItem.querySelectorAll('textarea')];
-        const answers = texts.map(text => encodeURIComponent(text.value));
+        // Get the question text (assuming one question per quiz item)
+        const question = encodeURIComponent(quizItem.querySelector('.question').value);
         
-        // Find the selected radio button for this quiz item
-        const selectedRadio = [...quizItem.querySelectorAll('input[type="radio"]')]
-            .find(radio => radio.checked);
+        // Get all answer options for this question
+        const answers = [...quizItem.querySelectorAll('.answer')].map(answer => encodeURIComponent(answer.value));
         
-        // Get the index of the selected answer or null if none selected
-        const correctAnswerIndex = selectedRadio ? answers.indexOf(encodeURIComponent(selectedRadio.nextSibling.value)) : null;
+        // Find the selected answer and determine its index
+        const selectedRadio = quizItem.querySelector('input[type="radio"]:checked');
+        const correctAnswerIndex = selectedRadio ? answers.indexOf(encodeURIComponent(selectedRadio.value)) : null;
         
         return {
+            question: question,
             answers: answers,
             correctAnswerIndex: correctAnswerIndex
         };
     });
 
+    // Generate the URL and set parameters
     const url = new URL(window.location.origin + '/homepage.html');
     url.searchParams.set('aboutMe', JSON.stringify(aboutMeData));
     url.searchParams.set('quiz', JSON.stringify(quizData));
 
+    // Redirect to the generated URL
     window.location.href = url.toString();
 }
+
