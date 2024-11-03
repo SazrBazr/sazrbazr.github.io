@@ -138,32 +138,119 @@ function closeAlert(id) {
 
 function shareResults() {
     const element = document.getElementById('responseAlert-content');
-    if (element) {  // Check if the element exists
-        html2canvas(element)
-            .then(canvas => {
-                canvas.toBlob(blob => {
-                    if (navigator.share) {
-                        const file = new File([blob], 'results.png', { type: 'image/png' });
-                        navigator.share({
-                            files: [file],
-                            title: 'Check out my results!',
-                            text: 'I shared my quiz results with you!'
-                        }).then(() => {
-                            console.log('Share successful!');
-                        }).catch((error) => {
-                            console.error('Error sharing:', error);
-                        });
-                    } else {
-                        alert('Sharing not supported on this browser.');
-                    }
+    if (element) {
+        const canvas = document.createElement('canvas');
+        const width = 1200;  // Doubled from 600
+        const height = 800;  // Doubled from 400
+        canvas.width = width;
+        canvas.height = height;
+
+        const context = canvas.getContext('2d');
+
+        // Create gradient background like the website
+        const gradient = context.createLinearGradient(0, 0, width, 0);
+        gradient.addColorStop(0, '#AECBEB');
+        gradient.addColorStop(1, '#83B0E1');
+        context.fillStyle = gradient;
+        context.fillRect(0, 0, width, height);
+
+        // Add border - scaled up
+        context.strokeStyle = '#71a5de';
+        context.lineWidth = 20;  // Doubled from 10
+        context.strokeRect(10, 10, width - 20, height - 20);
+
+        // Set up text styling
+        context.textAlign = 'center';
+        
+        // Try to use Comic Sans, fallback to system fonts if not available
+        const fontFamily = "'Comic Sans MS', 'Comic Sans', sans-serif";
+
+        // Draw decorative header - scaled up
+        context.fillStyle = '#E1ECF7';
+        context.fillRect(40, 40, width - 80, 140);  // Doubled heights and padding
+        context.strokeStyle = '#71A5DE';
+        context.lineWidth = 8;  // Doubled from 4
+        context.strokeRect(40, 40, width - 80, 140);
+
+        // Title text - scaled up
+        context.font = `bold 56px ${fontFamily}`;  // Doubled from 28px
+        context.fillStyle = '#4682b4';
+        context.fillText('My Quiz Results! 🎉', width / 2, 130);  // Adjusted Y position
+
+        // Create result card background - scaled up
+        context.fillStyle = '#E1ECF7';
+        context.fillRect(80, 220, width - 160, height - 300);
+        context.strokeStyle = '#71A5DE';
+        context.lineWidth = 8;
+        context.strokeRect(80, 220, width - 160, height - 300);
+
+        // Get content from the alert
+        const titleText = element.querySelector('#alert-title').innerText;
+        const msgText = element.querySelector('#alert-msg').innerText;
+
+        // Draw emoji decoration - scaled up
+        context.font = '80px Arial';  // Doubled from 40px
+        context.fillText('💖', width / 2, 280);
+
+        // Draw title text with wrapping - scaled up
+        context.font = `48px ${fontFamily}`;  // Doubled from 24px
+        context.fillStyle = '#4682b4';
+        wrapText(context, titleText, width / 2, 380, width - 240, 60);  // Doubled spacing
+
+        // Draw message text - scaled up
+        context.font = `40px ${fontFamily}`;  // Doubled from 20px
+        context.fillStyle = '#333333';
+        wrapText(context, msgText, width / 2, 560, width - 240, 60);  // Doubled spacing
+
+        // Add cute decorative elements - scaled up
+        context.font = '60px Arial';  // Doubled from 30px
+        context.fillText('✨', 100, 100);    // Top left star
+        context.fillText('🌟', width - 100, 100);    // Top right star
+        context.fillText('✨', 100, height - 60);    // Bottom left star
+        context.fillText('🌟', width - 100, height - 60);    // Bottom right star
+
+        // Share the image
+        canvas.toBlob(blob => {
+            if (navigator.share) {
+                const file = new File([blob], 'quiz-results.png', { type: 'image/png' });
+                navigator.share({
+                    files: [file],
+                    title: 'My Quiz Results! 🎉',
+                    text: 'Check out how well I know my friend!'
+                }).catch(error => {
+                    console.error('Error sharing:', error);
+                    alert('Could not share the image. Try saving it instead!');
                 });
-            })
-            .catch(error => {
-                console.error('Error capturing the element:', error);
-            });
-    } else {
-        console.error('Element not found: responseAlert');
+            } else {
+                // Fallback for browsers that don't support sharing
+                const link = document.createElement('a');
+                link.download = 'quiz-results.png';
+                link.href = canvas.toDataURL();
+                link.click();
+            }
+        });
     }
+}
+
+// Helper function to wrap text
+function wrapText(context, text, x, y, maxWidth, lineHeight) {
+    const words = text.split(' ');
+    let line = '';
+
+    for (let n = 0; n < words.length; n++) {
+        const testLine = line + words[n] + ' ';
+        const metrics = context.measureText(testLine);
+        const testWidth = metrics.width;
+
+        if (testWidth > maxWidth && n > 0) {
+            context.fillText(line, x, y);
+            line = words[n] + ' ';
+            y += lineHeight;
+        } else {
+            line = testLine;
+        }
+    }
+    context.fillText(line, x, y);
 }
 
 function selectRadio(questionName, value, svgElement) {
