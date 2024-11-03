@@ -1,7 +1,16 @@
 const correctAnswers = {};
 
 function displayContent() {
+    
     const urlParams = new URLSearchParams(window.location.search);
+
+    const currentcolors = JSON.parse(urlParams.get('color')) || {};
+
+    // Correct the variable name to match the declaration
+    document.body.style.setProperty('--main-bg-color', currentcolors['main']);
+    document.body.style.setProperty('--header-footer-bg-color', currentcolors['header']);
+    document.body.style.setProperty('--button-hover-bg-color', currentcolors['btn-hover']);
+    document.body.style.setProperty('--button-bg-color', currentcolors['btn']);
 
     const aboutMeData = JSON.parse(urlParams.get('aboutMe') || '[]');
     const aboutMeTextDiv = document.getElementById('aboutMeText');
@@ -21,7 +30,7 @@ function displayContent() {
         const questionDiv = document.createElement('div');
         questionDiv.classList.add('quiz-question');
         const ques = document.createElement('h3');
-        ques.textContent = decodeURIComponent(question);
+        ques.textContent = (index + 1) + '.' + decodeURIComponent(question);
         questionDiv.appendChild(ques);
 
         answers.forEach((answer, idx) => {

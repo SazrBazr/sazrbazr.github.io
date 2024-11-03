@@ -1,13 +1,78 @@
+:root {
+    --main-bg-color: #E1ECF7;
+    --header-footer-bg-color: #AECBEB;
+    --button-bg-color: #83B0E1;
+    --button-hover-bg-color: #71A5DE;
+    --Text-color: #333;
+}
+
+
+
 * {
     box-sizing: border-box;
+    transition: background-color 0.3s;
+    transition:all 0.3s;
 }
 
 body {
     font-family: 'Comic Sans MS', sans-serif; /* Cute font choice */
-    background-color: #E1ECF7; /* Light blue background */
-    color: #333;
+    background-color: var(--main-bg-color);
+    color: var(--Text-color);
     margin: 0;
     padding: 0;
+}
+
+.color-section {
+    display: flex; /* Enable flexbox on the section */
+    justify-content: center; /* Center child elements horizontally */
+    align-items: center; /* Center child elements vertically (optional) */
+}
+
+.colorList {
+    text-align: center; /* Center text in the colorList div */
+}
+
+.horizontal-list {
+    list-style-type: none; /* Remove bullets */
+    padding: 0; /* Remove padding */
+    margin: 0; /* Remove margin */
+    display: flex; /* Use flexbox to arrange items in a row */
+}
+
+.clickable-item-active{
+    width: 100px;
+    height: 45px;
+    margin: 10px;
+    text-align: center;
+    align-items: center;
+    border: 5px solid var(--button-hover-bg-color);
+    padding: 10px 15px; /* Padding inside items */
+    font-size: 1.1em;
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: font-size 0.3s;
+    transition: scale 0.3s;
+}
+
+.clickable-item {
+    width: 100px;
+    height: 45px;
+    margin: 10px;
+    text-align: center;
+    align-items: center;
+    padding: 10px 15px; /* Padding inside items */
+    font-size: 1.1em;
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: font-size 0.3s;
+    transition: scale 0.3s;
+}
+
+.clickable-item:hover {
+    scale: 120%;
+    font-size: 120%;
+    text-align: center;
+    align-items: center;
 }
 
 #quiz svg{
@@ -18,27 +83,11 @@ body {
 #quiz label{
     font-size: 1.1em;
 }
- 
-.custom-heart {
-    cursor: pointer; /* Change cursor to pointer */
-    display: inline-flex;
-    align-items: center;
-}
-
-.heart-radio {
-    transition: transform 0.2s;
-}
-
-.selected-heart path {
-    fill: #ff5722; /* Change the fill color to indicate selection */
-}
-
 
 header {
-    background: linear-gradient(to right, #AECBEB, #83B0E1); /* Blue gradient */
+    background: var(--header-footer-bg-color);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-bottom: 5px solid #71a5de; /* Darker blue border */
-    color: #333;
+    border-bottom: 5px solid var(--button-hover-bg-color); /* Darker blue border */
     padding: 20px;
     text-align: center;
 }
@@ -55,7 +104,6 @@ header {
 
 textarea {
     flex: 1; /* Allow the textarea to take up the remaining space */
-    margin-left: 10px; /* Space between checkbox and textarea */
 }
 
 
@@ -66,9 +114,9 @@ textarea {
 }
 
 .email-span {
-    background-color: #E1ECF7;
+    background-color: var(--main-bg-color);
     padding: 8px 12px;
-    border: 2px solid #83B0E1;
+    border: 2px solid var(--button-hover-bg-color);
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
     font-size: 18px;
@@ -76,8 +124,8 @@ textarea {
 
 .email-input {
     padding: 8px;
-    background-color: #E1ECF7;
-    border: 2px solid #83B0E1;
+    background-color: var(--main-bg-color);
+    border: 2px solid var(--button-hover-bg-color);
     border-right: none;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
@@ -104,9 +152,9 @@ textarea {
     max-width: 1000px;
     width: fit-content;
     padding: 40px 40px;
-    background-color: #e0f4ff; /* Light blue for modal */
-    border: 2px solid #71A5DE; /* Lighter blue border */
-    color: #4682b4; /* Darker blue for text */
+    background-color: var(--main-bg-color); /* Light blue for modal */
+    border: 2px solid var(--button-hover-bg-color); /* Lighter blue border */
+    color: var(--headerText-color); /* Darker blue for text */
     font-family: 'Comic Sans MS', 'Comic Sans';
     font-size: 20px;
     border-radius: 20px;
@@ -138,7 +186,7 @@ textarea {
     right: 10px;
     font-size: 40px;
     font-weight: bold;
-    color: #4682b4;
+    color: var(--headerText-color);
     cursor: pointer;
 }
 #shareButton{
@@ -155,7 +203,6 @@ textarea {
 
 #AboutMe h2 {
     font-size: 1.8em;
-    color: #4682b4; /* Darker blue */
     margin-bottom: 10px;
 }
 
@@ -167,7 +214,6 @@ textarea {
 .about-me-card ul li {
     font-size: 1.2em;
     margin: 20px 0px;
-    color: #333;
     position: relative;
 }
 
@@ -176,31 +222,24 @@ section {
     text-align: center; /* Center text for cuteness */
 }
 
-h2 {
-    color: #4682b4; /* Darker blue */
-}
-
-.bonding-question h3 {
-    color: #4682b4; /* Darker blue */
-}
-
 p {
     font-size: 1.1em;
 }
 
 button {
-    background-color: #4682b4; /* Blue button */
+    background-color: var(--button-bg-color);
     color: white;
     border: none;
     border-radius: 5px; /* Rounded corners */
     padding: 10px 20px;
     cursor: pointer;
     font-size: 20px;
+    width: fit-content;
     transition: background-color 0.3s, transform 0.3s;
 }
 
 button:hover {
-    background-color: #4169e1; /* Darker shade on hover */
+    background-color: var(--button-hover-bg-color); /* Darker shade on hover */
     transform: scale(1.05);
 }
 
@@ -217,11 +256,11 @@ button:hover {
 
 /* Form Styling */
 #bondingForm {
-    background-color: #E1ECF7; /* Light blue form background */
+    background-color: var(--main-bg-color); /* Light blue form background */
     border-radius: 10px; /* Rounded corners */
     padding: 20px; /* Padding around the form */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Adds a slight shadow for depth */
-    border: 5px solid #71A5DE; /* Blue border */
+    border: 5px solid var(--button-hover-bg-color); /* Blue border */
     max-width: 500px; /* Max width for better readability */
     margin: 20px auto; /* Center the form on the page */
 }
@@ -237,7 +276,7 @@ button:hover {
 textarea {
     width: 100%; /* Full width */
     padding: 10px; /* Padding inside textarea */
-    border: 2px solid #4682b4; /* Border color */
+    border: 2px solid var(--button-bg-color); /* Border color */
     border-radius: 5px; /* Rounded corners */
     resize: none; /* Disable resizing */
     background-color: #fff; /* Light background for text area */
@@ -248,8 +287,8 @@ textarea {
 
 textarea:focus {
     outline: none; /* Remove outline on focus */
-    border-color: #4169e1; /* Change border color on focus */
-    box-shadow: 0 0 5px rgba(65, 105, 225, 0.5); /* Add shadow effect */
+    border-color: var(--button-hover-bg-color); /* Change border color on focus */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Add shadow effect */
 }
 
 button[type="submit"] {
@@ -260,13 +299,13 @@ button[type="submit"] {
 
 /* Quiz Styling */
 .quiz-wrapper {
-    background-color: #E1ECF7; /* Light blue */
+    background-color: var(--main-bg-color); /* Light blue */
     padding: 20px;
     border-radius: 15px;
     max-width: 600px;
     margin: 0 auto;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Adds a slight shadow for depth */
-    border: 5px solid #71A5DE; /* Blue border */
+    border: 5px solid var(--button-hover-bg-color); /* Blue border */
 }
 
 .quiz-button {
@@ -279,7 +318,7 @@ button[type="submit"] {
     width: 100%; /* Full width */
     max-width: 500px; /* Max width for readability */
     padding: 20px;
-    background-color: #AECBEB; /* Match form background */
+    background-color: var(--main-bg-color); /* Match form background */
     border-radius: 10px; /* Rounded corners */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4); /* Subtle shadow */
 }
@@ -296,19 +335,18 @@ footer {
     text-align: center;
     margin-top: 50px;
     padding: 20px; /* More padding for the footer */
-    background: #649eff; /* Blue footer */
+    background: var(--header-footer-bg-color);
     font-size: 1.2em;
     box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Light shadow */
 }
 
 .quiz-card {
-    border: 1px solid #ccc;
+    border: 1px solid var(--button-hover-bg-color);
     padding: 20px;
     margin-bottom: 15px;
     border-radius: 10px;
-    background-color: #E1ECF7;
+    background-color: var(--main-bg-color);
 }
-
 
 .container {
     max-width: 800px;
@@ -316,12 +354,19 @@ footer {
     padding: 20px;
 }
 
+.gen-button-container {
+    display: flex; /* Enable flexbox */
+    justify-content: center; /* Center horizontally */
+    margin-top: 20px; /* Optional: add some spacing above the button */
+}
+
+
 .about-me-card, .quiz-card {
     padding: 20px;
     border-radius: 10px;
-    background-color: #E1ECF7;
+    background-color: var(--main-bg-color);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Adds a slight shadow for depth */
-    border: 5px solid #71A5DE; /* Blue border */
+    border: 5px solid var(--button-hover-bg-color); /* Blue border */
     max-width: 500px;
     margin: 0 auto;
     margin-bottom: 10px;
@@ -341,31 +386,17 @@ footer {
 }
 
 .add-btn, .generate-btn {
-    background-color: #71A5DE;
+    background-color: var(--button-bg-color);
     color: white;
-    padding: 10px;
+    padding: 20px 30px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    width: 100%;
     margin-top: 10px;
 }
 
 .add-btn:hover, .generate-btn:hover {
-    background-color: #45a049;
-}
-
-.textarea-container-first{
-    background-color: #AECBEB;
-    padding: 20px;
-    border-radius: 10px;
-}
-
-.textarea-container{
-    background-color: #AECBEB;
-    padding: 20px;
-    border-radius: 10px;
-    margin-top: 20px;
+    background-color: var(--button-hover-bg-color);
 }
 
 
