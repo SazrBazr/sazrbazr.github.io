@@ -9,7 +9,7 @@
 </head>
 <body>
     <header>
-        <h1>🌷 Let’s Get to Know Each Other 🌷</h1>
+        <h1>🌹 Let’s Get to Know Each Other 🌹</h1>
         <h3>I think you are an incredible and genuine person, and I'd love to learn more about you!</h3>
     </header>
 
@@ -20,6 +20,7 @@
                 <li>✨ I've had a passion for space since I was a child.</li>
                 <li>🌏 I would like to travel and explore new countries.</li>
                 <li>💔 My biggest fear is losing people that I love.</li>
+                <li>I have one younger sister.</li>
             </ul>
         </div>
     </section>    
@@ -29,58 +30,6 @@
 
         <script type="text/javascript"
             src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
-        </script>
-        <script>
-            (function() {
-                emailjs.init("torhjkGsU4X3vG3Bn");
-            })();
-        
-            // Check email count in local storage
-            function checkEmailLimit() {
-                let emailCount = localStorage.getItem("emailCount");
-                if (!emailCount) {
-                    localStorage.setItem("emailCount", 0);
-                    emailCount = 0;
-                }
-                return parseInt(emailCount, 10);
-            }
-
-            function incrementEmailCount() {
-                let emailCount = checkEmailLimit();
-                emailCount += 1;
-                localStorage.setItem("emailCount", emailCount);
-            }
-
-            function sendEmail(event) {
-                event.preventDefault();
-
-                // Check if email limit is reached
-                if (checkEmailLimit() >= 3) {
-                    document.getElementById("responseMessage").style.display = "block";
-                    document.getElementById("responseMessage").innerHTML = "<h3>You’ve reached the maximum number of submissions allowed.</h3>";
-                    return;
-                }
-
-                // Collecting data from the form
-                const unexpectedFact = document.querySelector('textarea[name="unexpectedFact"]').value;
-                const dreamDestination = document.querySelector('textarea[name="dreamDestination"]').value;
-                const biggestFear = document.querySelector('textarea[name="biggestFear"]').value;
-
-                emailjs.send("service_ce7g4hx","template_ug3oiii",{
-                    from_name: dreamDestination,
-                    to_name: unexpectedFact,
-                    message: biggestFear,
-                })
-                    .then(response => {
-                        incrementEmailCount();  // Increment email count on success
-                        document.getElementById("responseMessage").style.display = "block";
-                        document.getElementById("responseMessage").innerHTML = "<h3>Thanks for sharing! Your response has been submitted successfully.</h3>";
-                    })
-                    .catch(error => {
-                        document.getElementById("responseMessage").style.display = "block";
-                        document.getElementById("responseMessage").innerHTML = "<h3>Oops! Something went wrong. Please try again later.</h3>";
-                    });
-            }
         </script>
 
         <form id="bondingForm" onsubmit="sendEmail(event)">
@@ -99,6 +48,11 @@
                 <textarea name="biggestFear" rows="3" placeholder="Write your answer here..."></textarea>
             </div>
 
+            <div class="bonding-question">
+                <h3>4. Do you have any sibilings?</h3>
+                <textarea name="sibilings" rows="3" placeholder="Write your answer here..."></textarea>
+            </div>
+
             <button type="submit">Submit Your Answers</button>
         </form>
 
@@ -114,21 +68,21 @@
                     <label class="custom-heart">
                         <input type="radio" name="question1" value="Japan" hidden>
                         <svg width="24" height="24" viewBox="0 0 24 24" class="heart-radio" onclick="selectRadio('question1', 'Japan', this);">
-                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="white" stroke="#ff5722" stroke-width="2"/>
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="white" stroke="#FE251B" stroke-width="2"/>
                         </svg>
                         Japan
                     </label><br>
                     <label class="custom-heart">
                         <input type="radio" name="question1" value="Iceland" hidden>
                         <svg width="24" height="24" viewBox="0 0 24 24" class="heart-radio" onclick="selectRadio('question1', 'Iceland', this);">
-                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="white" stroke="#ff5722" stroke-width="2"/>
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="white" stroke="#FE251B" stroke-width="2"/>
                         </svg>
                         Iceland
                     </label><br>
                     <label class="custom-heart">
                         <input type="radio" name="question1" value="USA" hidden>
                         <svg width="24" height="24" viewBox="0 0 24 24" class="heart-radio" onclick="selectRadio('question1', 'USA', this);">
-                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="white" stroke="#ff5722" stroke-width="2"/>
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="white" stroke="#FE251B" stroke-width="2"/>
                         </svg>
                         USA
                     </label><br>
@@ -139,48 +93,98 @@
                     <label class="custom-heart">
                         <input type="radio" name="question2" value="No" hidden>
                         <svg width="24" height="24" viewBox="0 0 24 24" class="heart-radio" onclick="selectRadio('question2', 'No', this);">
-                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="white" stroke="#ff5722" stroke-width="2"/>
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="white" stroke="#FE251B" stroke-width="2"/>
                         </svg>
                         Nope
                     </label><br>
                     <label class="custom-heart">
                         <input type="radio" name="question2" value="Cat" hidden>
                         <svg width="24" height="24" viewBox="0 0 24 24" class="heart-radio" onclick="selectRadio('question2', 'Cat', this);">
-                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="white" stroke="#ff5722" stroke-width="2"/>
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="white" stroke="#FE251B" stroke-width="2"/>
                         </svg>
                         A Cat
                     </label><br>
                     <label class="custom-heart">
                         <input type="radio" name="question2" value="Dog" hidden>
                         <svg width="24" height="24" viewBox="0 0 24 24" class="heart-radio" onclick="selectRadio('question2', 'Dog', this);">
-                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="white" stroke="#ff5722" stroke-width="2"/>
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="white" stroke="#FE251B" stroke-width="2"/>
                         </svg>
                         A Dog
                     </label><br>
                 </div>
 
                 <div class="quiz-question">
-                    <h3>3. I Study:</h3>
+                    <h3>3. I study:</h3>
                     <label class="custom-heart">
                         <input type="radio" name="question3" value="ComputerScience" hidden>
                         <svg width="24" height="24" viewBox="0 0 24 24" class="heart-radio" onclick="selectRadio('question3', 'ComputerScience', this);">
-                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="white" stroke="#ff5722" stroke-width="2"/>
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="white" stroke="#FE251B" stroke-width="2"/>
                         </svg>
                         Computer Science
                     </label><br>
                     <label class="custom-heart">
                         <input type="radio" name="question3" value="CivilEngeneering" hidden>
                         <svg width="24" height="24" viewBox="0 0 24 24" class="heart-radio" onclick="selectRadio('question3', 'CivilEngeneering', this);">
-                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="white" stroke="#ff5722" stroke-width="2"/>
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="white" stroke="#FE251B" stroke-width="2"/>
                         </svg>
                         Civil Engeneering
                     </label><br>
                     <label class="custom-heart">
                         <input type="radio" name="question3" value="Physics" hidden>
                         <svg width="24" height="24" viewBox="0 0 24 24" class="heart-radio" onclick="selectRadio('question3', 'Physics', this);">
-                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="white" stroke="#ff5722" stroke-width="2"/>
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="white" stroke="#FE251B" stroke-width="2"/>
                         </svg>
                         Physics
+                    </label><br>
+                </div>
+
+                <div class="quiz-question">
+                    <h3>4. My favorite color is:</h3>
+                    <label class="custom-heart">
+                        <input type="radio" name="question4" value="Yellow" hidden>
+                        <svg width="24" height="24" viewBox="0 0 24 24" class="heart-radio" onclick="selectRadio('question4', 'Yellow', this);">
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="white" stroke="#FE251B" stroke-width="2"/>
+                        </svg>
+                        Yellow
+                    </label><br>
+                    <label class="custom-heart">
+                        <input type="radio" name="question4" value="Green" hidden>
+                        <svg width="24" height="24" viewBox="0 0 24 24" class="heart-radio" onclick="selectRadio('question4', 'Green', this);">
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="white" stroke="#FE251B" stroke-width="2"/>
+                        </svg>
+                        Green
+                    </label><br>
+                    <label class="custom-heart">
+                        <input type="radio" name="question4" value="Blue" hidden>
+                        <svg width="24" height="24" viewBox="0 0 24 24" class="heart-radio" onclick="selectRadio('question4', 'Blue', this);">
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="white" stroke="#FE251B" stroke-width="2"/>
+                        </svg>
+                        Blue
+                    </label><br>
+                </div>
+
+                <div class="quiz-question">
+                    <h3>5. My favorite food is:</h3>
+                    <label class="custom-heart">
+                        <input type="radio" name="question5" value="Sushi" hidden>
+                        <svg width="24" height="24" viewBox="0 0 24 24" class="heart-radio" onclick="selectRadio('question5', 'Sushi', this);">
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="white" stroke="#FE251B" stroke-width="2"/>
+                        </svg>
+                        Sushi
+                    </label><br>
+                    <label class="custom-heart">
+                        <input type="radio" name="question5" value="Pizza" hidden>
+                        <svg width="24" height="24" viewBox="0 0 24 24" class="heart-radio" onclick="selectRadio('question5', 'Pizza', this);">
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="white" stroke="#FE251B" stroke-width="2"/>
+                        </svg>
+                        Pizza
+                    </label><br>
+                    <label class="custom-heart">
+                        <input type="radio" name="question5" value="Burgers" hidden>
+                        <svg width="24" height="24" viewBox="0 0 24 24" class="heart-radio" onclick="selectRadio('question5', 'Burgers', this);">
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="white" stroke="#FE251B" stroke-width="2"/>
+                        </svg>
+                        Burgers
                     </label><br>
                 </div>
             
@@ -189,6 +193,7 @@
             <div id="quizResults" class="quiz-results" style="display:none;"></div>
         </div>
     </section>
+    
     <footer>
         <p>© 2024 Sari</p>
     </footer>
@@ -196,104 +201,25 @@
     
     <!-- alert -->
     <div id="responseAlert" class="cute-modal" style="display: none;">
-        <div class="cute-modal-content">
-            <span class="close-btn" onclick="closeAlert()">&times;</span>
+        <div id="responseAlert-content" class="cute-modal-content">
+            <span class="close-btn" onclick="closeAlert('responseAlert')">&times;</span>
             <span class="icon">💌</span>
             <div id="alert-title"></div>
             <div id="alert-msg"></div>
-            <button id="shareButton" onclick="shareResults()">Share Results as PNG</button> <!-- New share button -->
+            <button id="shareButton" onclick="shareResults()">Share Results</button> <!-- New share button -->
+        </div>
+    </div>
+
+    <div id="emailAlert" class="cute-modal" style="display: none;">
+        <div id="emailAlert-content" class="cute-modal-content">
+            <span class="close-btn" onclick="closeAlert('emailAlert')">&times;</span>
+            <span class="icon">💌</span>
+            <div id="email-title"></div>
+            <div id="email-msg"></div>
         </div>
     </div>
     <!-- end of alert -->
 
-    <script>
-        function checkAnswers() {
-            const correctAnswers = {
-                question1: "Iceland",
-                question2: "Dog",
-                question3: "ComputerScience"
-            };
-            let score = 0;
-
-            for (let question in correctAnswers) {
-                const selectedOption = document.querySelector(`input[name="${question}"]:checked`);
-                if (selectedOption && selectedOption.value === correctAnswers[question]) {
-                    score++;
-                }
-            }
-
-            const resultDiv = document.getElementById('quizResults');
-            resultDiv.style.display = 'block';
-            resultDiv.innerHTML = `<h3>You got ${score} out of ${Object.keys(correctAnswers).length} correct!</h3>`;
-            
-            const alertTitle = document.getElementById('alert-title');
-            const alertMsg = document.getElementById('alert-msg');
-            document.getElementById('responseAlert').style.display = 'flex';
-            if(score == Object.keys(correctAnswers).length){
-                alertTitle.innerHTML  = `<h1>WOW!</h1>`;
-            }
-            else{
-                if(score == Object.keys(correctAnswers).length - 1){
-                    alertTitle.innerHTML  = `<h1>Nice Try!</h1>`;
-                }
-                else{
-                    alertTitle.innerHTML  = `<h1>Try Again!</h1>`;
-                }
-            }
-            alertMsg.innerHTML = `<h2>You got ${score} out of ${Object.keys(correctAnswers).length} correct!</h2>`;
-        }
-
-        function closeAlert() {
-            // Hide the modal alert
-            document.getElementById('responseAlert').style.display = 'none';
-        }
-
-        function shareResults() {
-            const element = document.getElementById('responseAlert');
-            if (element) {  // Check if the element exists
-                html2canvas(element)
-                    .then(canvas => {
-                        canvas.toBlob(blob => {
-                            if (navigator.share) {
-                                const file = new File([blob], 'results.png', { type: 'image/png' });
-                                navigator.share({
-                                    files: [file],
-                                    title: 'Check out my results!',
-                                    text: 'I shared my quiz results with you!'
-                                }).then(() => {
-                                    console.log('Share successful!');
-                                }).catch((error) => {
-                                    console.error('Error sharing:', error);
-                                });
-                            } else {
-                                alert('Sharing not supported on this browser.');
-                            }
-                        });
-                    })
-                    .catch(error => {
-                        console.error('Error capturing the element:', error);
-                    });
-            } else {
-                console.error('Element not found: responseAlert');
-            }
-        }
-
-        function selectRadio(questionName, value, svgElement) {
-            // Check the radio button
-            const radioButton = document.querySelector(`input[name="${questionName}"][value="${value}"]`);
-            if (radioButton) {
-                radioButton.checked = true;
-            }
-
-            // Get all SVGs in the same question to reset their fill color
-            const svgs = document.querySelectorAll(`input[name="${questionName}"] + svg`);
-            svgs.forEach(svg => {
-                svg.querySelector('path').setAttribute('fill', 'white'); // Reset fill to white
-            });
-
-            // Change the fill color of the selected heart
-            svgElement.querySelector('path').setAttribute('fill', '#ff5722'); // Change fill color to selected
-        }
-    </script>
+    <script src="index.js"></script>
 </body>
 </html>

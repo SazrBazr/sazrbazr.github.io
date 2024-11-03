@@ -36,11 +36,23 @@ function addQuizSection() {
     questionBox.placeholder = 'Quiz Question';
     quizItem.appendChild(questionBox);
 
-    // Add answer text areas
+    // Add answer text areas and radio buttons
     for (let i = 1; i <= 3; i++) {
+        const answerContainer = document.createElement('div');
+        answerContainer.classList.add('answer-container');
+        
+        // Create a radio button for the answer
+        const answerRadio = document.createElement('input');
+        answerRadio.type = 'radio';
+        answerRadio.name = `question-${quizCard.children.length}-${i}`; // Grouping by question index
+        answerContainer.appendChild(answerRadio);
+
         const answerBox = document.createElement('textarea');
         answerBox.placeholder = `Answer ${i}`;
-        quizItem.appendChild(answerBox);
+        answerContainer.appendChild(answerBox);
+
+        // Append the answer container (textarea + radio) to the quiz item
+        quizItem.appendChild(answerContainer);
     }
 
     // Create a remove button for the quiz card
@@ -57,6 +69,7 @@ function addQuizSection() {
     quizSection.appendChild(quizCard);
 }
 
+
 // Function to remove an element from the DOM
 function removeElement(element) {
     element.remove();
@@ -69,7 +82,19 @@ function generateURL() {
     const aboutMeData = aboutMeTexts.map(textarea => encodeURIComponent(textarea.value));
     const quizData = quizItems.map(quizItem => {
         const texts = [...quizItem.querySelectorAll('textarea')];
-        return texts.map(text => encodeURIComponent(text.value));
+        const answers = texts.map(text => encodeURIComponent(text.value));
+        
+        // Find the selected radio button for this quiz item
+        const selectedRadio = [...quizItem.querySelectorAll('input[type="radio"]')]
+            .find(radio => radio.checked);
+        
+        // Get the index of the selected answer or null if none selected
+        const correctAnswerIndex = selectedRadio ? answers.indexOf(encodeURIComponent(selectedRadio.nextSibling.value)) : null;
+        
+        return {
+            answers: answers,
+            correctAnswerIndex: correctAnswerIndex
+        };
     });
 
     const url = new URL(window.location.origin + '/homepage.html');

@@ -51,7 +51,9 @@
                         </div>
                     </div>
                 </div>
+                <button id="results-btn" class="quiz-button" onclick="checkAnswers()" style="display:none;">Submit Answers 🎉</button>
             </div>
+            <div id="quizResults" class="quiz-results" style="display:none;"></div>
             <button class="add-btn" onclick="addQuizSection()">+ Add Another Question</button>
         </section>        
 
@@ -62,6 +64,18 @@
     <footer>
         <p>© 2024 Sari</p>
     </footer>
+
+        <!-- alert -->
+        <div id="responseAlert" class="cute-modal" style="display: none;">
+            <div id="responseAlert-content" class="cute-modal-content">
+                <span class="close-btn" onclick="closeAlert()">&times;</span>
+                <span class="icon">💌</span>
+                <div id="alert-title"></div>
+                <div id="alert-msg"></div>
+                <button id="shareButton" onclick="shareResults()">Share Results</button> <!-- New share button -->
+            </div>
+        </div>
+        <!-- end of alert -->
 
     <script src="test.js"></script>
 </body>

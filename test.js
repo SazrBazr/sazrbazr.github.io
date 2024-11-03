@@ -1,3 +1,6 @@
+const correctAnswers = {}; // Declare an object to store correct answers
+
+
 function addAboutMe() {
     const textContainer = document.getElementById('aboutme-card');
 
@@ -33,16 +36,37 @@ function addQuizSection() {
     const quizItem = document.createElement('div');
     quizItem.classList.add('quiz-item');
 
+    // Create the question textarea
     const questionBox = document.createElement('textarea');
     questionBox.placeholder = 'Quiz Question';
     quizItem.appendChild(questionBox);
 
-    // Add answer text areas
+    const answerInputs = document.createElement('div');
+    answerInputs.classList.add('answer-inputs');
+
+    // Add answer text areas with radio buttons
     for (let i = 1; i <= 3; i++) {
+        const answerContainer = document.createElement('div');
+        answerContainer.classList.add('answer-container'); // New div to contain radio and textarea
+
         const answerBox = document.createElement('textarea');
         answerBox.placeholder = `Answer ${i}`;
-        quizItem.appendChild(answerBox);
+        answerBox.rows = 1; // Optional: Set rows for better size management
+
+        const answerRadio = document.createElement('input');
+        answerRadio.type = 'radio';
+        answerRadio.name = `question${quizSection.childElementCount + 1}`; // Unique name for each question
+        answerRadio.id = `answer${quizSection.childElementCount + 1}-${i}`; // Unique ID for each answer
+        answerRadio.value = answerBox.value;
+
+        // Append the radio label and answer textarea to the answer container
+        answerContainer.appendChild(answerRadio); // Append radio label
+        answerContainer.appendChild(answerBox); // Append answer text area
+
+        answerInputs.appendChild(answerContainer);
     }
+
+    quizItem.appendChild(answerInputs);
 
     // Create a remove button for the quiz card
     const removeButton = document.createElement('button');
@@ -56,6 +80,72 @@ function addQuizSection() {
 
     // Append the new card to the end of the quiz section
     quizSection.appendChild(quizCard);
+}
+
+function checkAnswers() {
+    let score = 0;
+
+    for (let question in correctAnswers) {
+        const selectedOption = document.querySelector(`input[name="${question}"]:checked`);
+        if (selectedOption && selectedOption.value === correctAnswers[question]) {
+            score++;
+        }
+    }
+
+    const resultDiv = document.getElementById('quizResults');
+    resultDiv.style.display = 'block';
+    resultDiv.innerHTML = `<h3>You got ${score} out of ${Object.keys(correctAnswers).length} correct!</h3>`;
+    
+    const alertTitle = document.getElementById('alert-title');
+    const alertMsg = document.getElementById('alert-msg');
+    document.getElementById('responseAlert').style.display = 'flex';
+    if(score === Object.keys(correctAnswers).length){
+        alertTitle.innerHTML  = `<h1>WOW!</h1>`;
+    }
+    else{
+        if(score === Object.keys(correctAnswers).length - 1){
+            alertTitle.innerHTML  = `<h1>Nice Try!</h1>`;
+        }
+        else{
+            alertTitle.innerHTML  = `<h1>Try Again!</h1>`;
+        }
+    }
+    alertMsg.innerHTML = `<h2>You got ${score} out of ${Object.keys(correctAnswers).length} correct!</h2>`;
+}
+
+function closeAlert() {
+    // Hide the modal alert
+    document.getElementById('responseAlert').style.display = 'none';
+}
+
+function shareResults() {
+    const element = document.getElementById('responseAlert');
+    if (element) {  // Check if the element exists
+        html2canvas(element, {scale: 4})
+            .then(canvas => {
+                canvas.toBlob(blob => {
+                    if (navigator.share) {
+                        const file = new File([blob], 'results.png', { type: 'image/png' });
+                        navigator.share({
+                            files: [file],
+                            title: 'Check out my results!',
+                            text: 'I shared my quiz results with you!'
+                        }).then(() => {
+                            console.log('Share successful!');
+                        }).catch((error) => {
+                            console.error('Error sharing:', error);
+                        });
+                    } else {
+                        alert('Sharing not supported on this browser.');
+                    }
+                });
+            })
+            .catch(error => {
+                console.error('Error capturing the element:', error);
+            });
+    } else {
+        console.error('Element not found: responseAlert');
+    }
 }
 
 // Function to remove an element from the DOM
@@ -80,89 +170,96 @@ function generateURL() {
     window.location.href = url.toString();
 }
 
-function changeInToText(){
-    // Change textareas in About Me section
-    const aboutMeTextareas = document.querySelectorAll('#aboutMeSection textarea');
-    aboutMeTextareas.forEach(textarea => {
-        // Create a new paragraph element
-        const pElement = document.createElement('p');
-        // Set the text content to the value of the textarea
-        pElement.textContent = textarea.value;
-        textarea.parentNode.parentNode.replaceChild(pElement, textarea.parentNode);
-    });
 
-    // Get all quiz containers
+function changeInToText() {
+    document.getElementById('results-btn').style.display = 'inline';
+
     const quizContainers = document.querySelectorAll('.textarea-container, .textarea-container-first');
 
     quizContainers.forEach((container, index) => {
-        // Extract the question and answers from the textareas
-        const questionText = container.querySelector('textarea').value; // Get the quiz question
-        const answerTextareas = container.querySelectorAll('.answer-inputs textarea');
+        const questionTextarea = container.querySelector('textarea');
+        const questionText = questionTextarea.value;
 
-        // Create the new quiz question container
+        const answerTextareas = container.querySelectorAll('.answer-container textarea');
+
         const quizQuestionDiv = document.createElement('div');
         quizQuestionDiv.className = 'quiz-question';
 
-        // Create the question header
         const questionHeader = document.createElement('h3');
         questionHeader.textContent = questionText;
         quizQuestionDiv.appendChild(questionHeader);
 
-        // Loop through each answer textarea to create radio buttons
         answerTextareas.forEach((textarea, idx) => {
             const label = document.createElement('label');
             label.className = 'custom-heart';
 
-            // Create the input radio element
             const radioInput = document.createElement('input');
             radioInput.type = 'radio';
-            radioInput.name = `question${index + 1}`; // Use a unique name for each question
-            radioInput.value = textarea.value; // Set the value to the textarea's content
-            radioInput.hidden = true; // Hide the radio input
+            radioInput.name = `question${index + 1}`; // Grouping radio buttons by question
+            radioInput.value = textarea.value;
+            radioInput.classList.add('correct-radio'); // Add class for easy selection
 
-            // Create the SVG element for the heart icon
+            // Create SVG for the heart radio button
             const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
             svg.setAttribute("width", "24");
             svg.setAttribute("height", "24");
             svg.setAttribute("viewBox", "0 0 24 24");
-            svg.className = 'heart-radio';
-            svg.setAttribute("onclick", `selectRadio('question${index + 1}', '${textarea.value}', this);`);
+            svg.classList.add('heart-radio');
 
-            // Create the path element for the heart shape
             const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
             path.setAttribute("d", "M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z");
             path.setAttribute("fill", "white");
             path.setAttribute("stroke", "#ff5722");
             path.setAttribute("stroke-width", "2");
 
-            // Append the path to the SVG
             svg.appendChild(path);
 
-            // Append the radio input and text to the label
-            label.appendChild(radioInput);
-            label.appendChild(svg);
-            label.appendChild(document.createTextNode(textarea.value)); // Add the answer text
+            // Attach a click event to toggle radio button selection
+            svg.onclick = () => {
+                // Select the radio input
+                radioInput.checked = true; // Mark the radio input as checked
 
-            // Append the label to the quiz question container
+                // Update the custom heart color to reflect selection
+                const allHearts = document.querySelectorAll(`input[name="question${index + 1}"] + svg`);
+                allHearts.forEach(heart => {
+                    heart.classList.remove('selected-heart'); // Remove selected style from all
+                });
+
+                svg.classList.add('selected-heart'); // Add selected style to the clicked heart
+            };
+
+            label.appendChild(radioInput); // Attach the hidden radio button to the label
+            label.appendChild(svg); // Attach the SVG heart to the label
+            label.appendChild(document.createTextNode(textarea.value)); // Attach the answer text
+
             quizQuestionDiv.appendChild(label);
-            quizQuestionDiv.appendChild(document.createElement('br')); // Add a line break for spacing
+            quizQuestionDiv.appendChild(document.createElement('br'));
+
+            // If the radio button is checked, save its value as the correct answer
+            radioInput.addEventListener('change', () => {
+                if (radioInput.checked) {
+                    correctAnswers[`question${index + 1}`] = textarea.value; // Store correct answer
+                }
+            });
         });
 
-        // Replace the original container with the new quiz question container
         container.parentNode.replaceChild(quizQuestionDiv, container);
     });
 }
 
+function selectRadio(questionName, value, svgElement) {
+    // Check the radio button
+    const radioButton = document.querySelector(`input[name="${questionName}"][value="${value}"]`);
+    if (radioButton) {
+        radioButton.checked = true;
+    }
 
-{/* 
-<div class="textarea-container-first">
-    <div class="quiz-item">
-        <textarea placeholder="Quiz Question" rows="2"></textarea>
-        <div class="answer-inputs">
-            <textarea placeholder="Answer 1"></textarea>
-            <textarea placeholder="Answer 2"></textarea>
-            <textarea placeholder="Answer 3"></textarea>
-        </div>
-    </div>
-</div> 
-*/}
+    // Get all SVGs in the same question to reset their fill color
+    const svgs = document.querySelectorAll(`input[name="${questionName}"] + svg`);
+    svgs.forEach(svg => {
+        svg.querySelector('path').setAttribute('fill', 'white'); // Reset fill to white
+    });
+
+    // Change the fill color of the selected heart
+    svgElement.querySelector('path').setAttribute('fill', '#ff5722'); // Change fill color to selected
+}
