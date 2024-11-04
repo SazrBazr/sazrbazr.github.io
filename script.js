@@ -109,7 +109,7 @@ function generateURL() {
     });
 
     // Generate the URL and set parameters
-    const url = new URL(window.location.origin + '/homepage.html');
+    const url = new URL(window.location.origin + '/index.html');
     url.searchParams.set('aboutMe', JSON.stringify(aboutMeData));
     url.searchParams.set('quiz', JSON.stringify(quizData));
     url.searchParams.set('color', JSON.stringify(currentcolors));
