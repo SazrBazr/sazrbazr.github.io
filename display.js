@@ -1,10 +1,17 @@
 const correctAnswers = {};
+let userEmail = "";
 
 function displayContent() {
     
     const urlParams = new URLSearchParams(window.location.search);
 
     const currentcolors = JSON.parse(urlParams.get('color')) || {};
+    
+    const userEmailData = urlParams.get('userEmail') || "";
+    
+    userEmail = decodeURIComponent(userEmailData);
+
+    console.log(userEmail);
 
     // Correct the variable name to match the declaration
     document.body.style.setProperty('--main-bg-color', currentcolors['main']);
@@ -131,6 +138,14 @@ function closeAlert() {
 }
 
 function shareResults() {
+
+    createPNG()
+}
+
+
+
+function createPNG()
+{
     const element = document.getElementById('responseAlert');
     if (element) {
         const canvas = document.createElement('canvas');

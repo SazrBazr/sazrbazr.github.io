@@ -88,6 +88,8 @@ function generateURL() {
     const aboutMeTexts = [...document.querySelectorAll('#aboutMeSection textarea')];
     const quizItems = [...document.querySelectorAll('.quiz-item')];
 
+    const userEmail = encodeURIComponent(document.getElementById('userEmail').value);
+
     // Map each textarea value to an encoded array for "aboutMe" data
     const aboutMeData = aboutMeTexts.map(textarea => encodeURIComponent(textarea.value));
     
@@ -101,6 +103,8 @@ function generateURL() {
         
         const correctAnswerIndex = [...quizItem.querySelectorAll('input')].findIndex(input => input.checked);
 
+        
+
         return {
             question: question,
             answers: answers,
@@ -109,10 +113,17 @@ function generateURL() {
     });
 
     // Generate the URL and set parameters
-    const url = new URL(window.location.origin + '/personalizedQuiz/PersonalizedPage.html');
+    let url;
+
+    //url = new URL(window.location.origin + '/personalizedQuiz/PersonalizedPage.html');
+    url = new URL(window.location.origin + '/PersonalizedPage.html');
+    
+    
+
     url.searchParams.set('aboutMe', JSON.stringify(aboutMeData));
     url.searchParams.set('quiz', JSON.stringify(quizData));
     url.searchParams.set('color', JSON.stringify(currentcolors));
+    url.searchParams.set('userEmail', userEmail);
 
     // Redirect to the generated URL
     window.location.href = url.toString();
