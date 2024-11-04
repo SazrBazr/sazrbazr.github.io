@@ -1,4 +1,9 @@
-currentcolors = {};
+currentcolors = {
+    'main': '#E1ECF7',   
+    'header':'#AECBEB',
+    'btn-hover':'#71A5DE',
+    'btn':'#4682b4'
+};
 
 function addAboutMe() {
     const textContainer = document.getElementById('text-container');
@@ -113,6 +118,25 @@ function generateURL() {
     window.location.href = url.toString();
 }
 
+
+function setColors(main, header, btnHover, btn, activeElement) {
+    document.body.style.setProperty('--main-bg-color', main);
+    document.body.style.setProperty('--header-footer-bg-color', header);
+    document.body.style.setProperty('--button-hover-bg-color', btnHover);
+    document.body.style.setProperty('--button-bg-color', btn);
+    currentcolors['main'] = main;
+    currentcolors['header'] = header;
+    currentcolors['btn-hover'] = btnHover;
+    currentcolors['btn'] = btn;
+    
+    // Reset all clickable items to inactive
+    const colorItems = [blue, green, yellow, pink, orange, purple];
+    colorItems.forEach(item => item.classList = 'clickable-item');
+    
+    // Set the active class for the clicked item
+    activeElement.classList = 'clickable-item-active';
+}
+
 function itemClicked(color) {
     // Change the CSS variables or styles based on the selected color
     const blue = document.getElementById('blue');
@@ -120,7 +144,7 @@ function itemClicked(color) {
     const yellow = document.getElementById('yellow');
     const pink = document.getElementById('pink');
     const orange = document.getElementById('orange');
-    const Purple = document.getElementById('purple');
+    const purple = document.getElementById('purple');
     
     switch (color) {
         case 'Blue':
@@ -136,7 +160,7 @@ function itemClicked(color) {
             setColors('#C9E4DF', '#8BB8B0', '#2A6359', '#538E83', green);
             break;
         case 'Purple':
-            setColors('#DBCDF0', '#E1B7E1', '#B57BB5', '#9C27B0', Purple);
+            setColors('#DBCDF0', '#E1B7E1', '#B57BB5', '#9C27B0', purple);
             break;
         case 'Orange':
             setColors('#F8D9C4', '#F6A286', '#FFA500', '#FF9800', orange);
@@ -145,21 +169,3 @@ function itemClicked(color) {
     
 }
 
-
-function setColors(main, header, btnHover, btn, activeElement) {
-    document.body.style.setProperty('--main-bg-color', main);
-    document.body.style.setProperty('--header-footer-bg-color', header);
-    document.body.style.setProperty('--button-hover-bg-color', btnHover);
-    document.body.style.setProperty('--button-bg-color', btn);
-    currentcolors['main'] = main;
-    currentcolors['header'] = header;
-    currentcolors['btn-hover'] = btnHover;
-    currentcolors['btn'] = btn;
-    
-    // Reset all clickable items to inactive
-    const colorItems = [blue, green, yellow, pink, orange, Purple];
-    colorItems.forEach(item => item.classList = 'clickable-item');
-    
-    // Set the active class for the clicked item
-    activeElement.classList = 'clickable-item-active';
-}
