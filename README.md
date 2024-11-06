@@ -21,6 +21,6 @@ This project is licensed under the Creative Commons Attribution-NoDerivatives 4.
 © 2024 Sari Zrieq, Salem Zrieq
 
 ## Contact
-For any questions or inquiries, please reach out to us at (not yet available).
+For any questions or inquiries, please reach out to us at connect.discoverus@gmail.com.
 
 Thank you for using the Personalized Quiz Website! Enjoy creating and sharing quizzes with your crush!
