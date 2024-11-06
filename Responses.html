@@ -16,63 +16,6 @@
 
         <section id="bondingQuestions">
             <h2>Tell me about yourself</h2>
-    
-            <script type="text/javascript"
-                src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
-            </script>
-            <script>
-                (function() {
-                    emailjs.init("torhjkGsU4X3vG3Bn");
-                })();
-            
-                // Check email count in local storage
-                function checkEmailLimit() {
-                    let emailCount = localStorage.getItem("emailCount");
-                    if (!emailCount) {
-                        localStorage.setItem("emailCount", 0);
-                        emailCount = 0;
-                    }
-                    return parseInt(emailCount, 10);
-                }
-    
-                function incrementEmailCount() {
-                    let emailCount = checkEmailLimit();
-                    emailCount += 1;
-                    localStorage.setItem("emailCount", emailCount);
-                }
-    
-                function sendEmail(event) {
-                    event.preventDefault();
-    
-                    // Check if email limit is reached
-                    if (checkEmailLimit() >= 3) {
-                        document.getElementById("responseMessage").style.display = "block";
-                        document.getElementById("responseMessage").innerHTML = "<h3>You’ve reached the maximum number of submissions allowed.</h3>";
-                        return;
-                    }
-    
-                    // Collecting data from the form
-                    const unexpectedFact = document.querySelector('textarea[name="unexpectedFact"]').value;
-                    const dreamDestination = document.querySelector('textarea[name="dreamDestination"]').value;
-                    const biggestFear = document.querySelector('textarea[name="biggestFear"]').value;
-    
-                    emailjs.send("service_ce7g4hx","template_ug3oiii",{
-                        from_name: dreamDestination,
-                        to_name: unexpectedFact,
-                        message: biggestFear,
-                    })
-                        .then(response => {
-                            incrementEmailCount();  // Increment email count on success
-                            document.getElementById("responseMessage").style.display = "block";
-                            document.getElementById("responseMessage").innerHTML = "<h3>Thanks for sharing! Your response has been submitted successfully.</h3>";
-                        })
-                        .catch(error => {
-                            document.getElementById("responseMessage").style.display = "block";
-                            document.getElementById("responseMessage").innerHTML = "<h3>Oops! Something went wrong. Please try again later.</h3>";
-                        });
-                }
-            </script>
-    
             <form id="bondingForm" onsubmit="sendEmail(event)">
                 <div class="bonding-question">
                     <h3>1. What's something unexpected about you that most people don’t know?</h3>
