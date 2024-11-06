@@ -86,7 +86,71 @@ function removeElement(element) {
     element.remove();
 }
 
+window.copyQuizzURL = async function() { 
+
+    const url = document.getElementById('quizLink').value;
+
+    navigator.clipboard.writeText(url).then(() => {
+        console.log("Text copied to clipboard");
+    }).catch(err => {
+        console.error("Could not copy text: ", err);
+    });
+
+}
+
+window.copyResponsesURL = async function() { 
+
+    const url = document.getElementById('responsesLink').value;
+
+    navigator.clipboard.writeText(url).then(() => {
+        console.log("Text copied to clipboard");
+    }).catch(err => {
+        console.error("Could not copy text: ", err);
+    });
+
+}
+
+function allFieldsFilled() {
+    // Get values of main inputs
+    const userName = document.getElementById('userName').value.trim();
+    const crushName = document.getElementById('crushName').value.trim();
+    if (!userName || !crushName) return false;
+
+    // Check About Me fields
+    const aboutMeTexts = [...document.querySelectorAll('#aboutMeSection textarea')];
+    for (const textarea of aboutMeTexts) {
+        if (!textarea.value.trim()) return false;
+    }
+
+    // Check Quiz fields
+    const quizItems = [...document.querySelectorAll('.quiz-item')];
+    for (const quizItem of quizItems) {
+        const question = quizItem.querySelector('.question').value.trim();
+        if (!question) return false;
+
+        const answers = [...quizItem.querySelectorAll('.answer')];
+        for (const answer of answers) {
+            if (!answer.value.trim()) return false;
+        }
+
+        // Ensure one answer is selected as the correct one
+        const selectedAnswer = [...quizItem.querySelectorAll('input[type="radio"]')].some(radio => radio.checked);
+        if (!selectedAnswer) return false;
+    }
+
+    // All fields are filled
+    return true;
+}
+
+
 window.generateURL = async function() { 
+
+    document.getElementById('errorMessage').hidden = true;
+    if (!allFieldsFilled()) {
+        document.getElementById('errorMessage').hidden = false;
+        return;
+    }
+
     const aboutMeTexts = [...document.querySelectorAll('#aboutMeSection textarea')];
     const quizItems = [...document.querySelectorAll('.quiz-item')];
 
@@ -115,20 +179,21 @@ window.generateURL = async function() {
 
     await createUser(db, aboutMeData, quizData, currentcolors, userName, otherName);
 
-    // //url = new URL(window.location.origin + '/personalizedQuiz/PersonalizedPage.html');
-    let url = new URL(window.location.origin + '/PersonalizedPage.html');
+    const quizURL = new URL(window.location.origin + '/personalizedQuiz/PersonalizedPage.html');
 
-    url.searchParams.set('names', userName + "-" + otherName);
+    quizURL.searchParams.set('names', userName + "-" + otherName);
 
-    // url.searchParams.set('aboutMe', JSON.stringify(aboutMeData));
-    // url.searchParams.set('quiz', JSON.stringify(quizData));
-    // url.searchParams.set('color', JSON.stringify(currentcolors));
-    // url.searchParams.set('userEmail', userEmail);
+    const responsesURL = new URL(window.location.origin + '/personalizedQuiz/Responses.html');
 
-    // Redirect to the generated URL
-    window.location.href = url.toString();
+    responsesURL.searchParams.set('names', userName + "-" + otherName);
+
+    document.getElementById('quizLink').value = quizURL;
+    document.getElementById('responsesLink').value = responsesURL;
+    document.getElementById('linksSection').removeAttribute('hidden');
+    document.getElementById('generateBtn').hidden = true;
+
+    //window.location.href = url.toString();
 }
-
 
 function setColors(main, header, btnHover, btn, activeElement) {
     document.body.style.setProperty('--main-bg-color', main);

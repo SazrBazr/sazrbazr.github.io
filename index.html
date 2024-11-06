@@ -84,11 +84,27 @@
             </div>
         </section>        
 
-        <!-- Generate URL Button -->
-        <div class="gen-button-container">
-            <button class="generate-btn" onclick="generateURL()">Generate Profile</button>
-        </div>
+        <section id="linksSection" hidden>
+            <h2>You can send this to your crush</h2>
+            <div class="quiz-card">
+                <input class="linkField" type="text" value="" id="quizLink" readonly>
+                <button id="quizLinkButton" onclick="copyQuizzURL()">Copy URL</button>
+            </div>
 
+            <h2>Keep this to view the responses</h2>
+            <div class="quiz-card">
+                <input class="linkField" type="text" value="" id="responsesLink" readonly>
+                <button id="responsesLinkButton" onclick="copyResponsesURL()">Copy URL</button>
+            </div>
+        </section>
+
+        <section>
+            <h2 id="errorMessage" hidden>please fill every fiels first</h2>
+            <!-- Generate URL Button -->
+            <div class="gen-button-container">
+                <button id="generateBtn" class="generate-btn" onclick="generateURL()">Generate Profile</button>
+            </div>
+        </section>
     </div>
 
     <footer>

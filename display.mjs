@@ -1,4 +1,4 @@
-import { getUser, db } from './FirebaseConfig.js';
+import { getUser, updateUserData, getIdByUsername, db } from './FirebaseConfig.js';
 
 const correctAnswers = {};
 
@@ -103,7 +103,7 @@ window.selectRadio = function(questionName, value, svgElement) {
     svgElement.querySelector('path').setAttribute('fill', '#FF4033'); // Change fill color to selected
 }
 
-window.checkAnswers = function() {
+function getScore(){
     let score = 0;
 
     for (let question in correctAnswers) {
@@ -112,7 +112,12 @@ window.checkAnswers = function() {
             score++;
         }
     }
+    return score;
+}
 
+window.checkAnswers = function() {
+    
+    const score = getScore();
     const resultDiv = document.getElementById('quizResults');
     resultDiv.style.display = 'block';
     resultDiv.innerHTML = `<h3>You got ${score} out of ${Object.keys(correctAnswers).length} correct!</h3>`;
@@ -140,7 +145,85 @@ window.shareResults = function() {
     createPNG()
 }
 
+function getSelectedRadioButtons() {
+    // Create an object to hold the selected values
+    const selectedValues = {};
 
+    // Get all the radio buttons that are checked
+    const radioButtons = document.querySelectorAll('input[type="radio"]:checked');
+
+    // Loop through each checked radio button
+    radioButtons.forEach(button => {
+        // Use the name attribute as the key (e.g., question1, question2) and the value as the selected answer
+        selectedValues[button.name] = button.value;
+    });
+
+    // Log the selected values
+    console.log("Selected radio buttons: ", selectedValues);
+
+    return selectedValues
+}
+
+function checkIfFieldsFilled() {
+    // Get all textareas and inputs
+    const textareas = document.querySelectorAll('textarea');
+    const radioButtons = document.querySelectorAll('input[type="radio"]');
+    
+    // Check if all textareas are filled
+    for (let textarea of textareas) {
+        if (textarea.value.trim() === "") {
+            alert("Please fill out all text areas.");
+            return false; // Return false if any textarea is empty
+        }
+    }
+
+    // Check if all radio buttons have a selected value
+    const questions = new Set();
+    radioButtons.forEach(button => {
+        if (button.checked) {
+            questions.add(button.name);
+        }
+    });
+
+    // Check if every question has been answered
+    const totalQuestions = document.querySelectorAll('.quiz-question').length;
+    if (questions.size !== totalQuestions) {
+        return false; // Return false if not all questions are answered
+    }
+
+    return true; // Return true if all fields are filled
+}
+
+window.sumbitResults = async function() {
+
+    document.getElementById('errorMessage').hidden = true;
+    if (!checkIfFieldsFilled()) {
+        document.getElementById('errorMessage').hidden = false;
+        return;
+    }
+
+    const urlParams = new URLSearchParams(window.location.search);
+
+    const names = urlParams.get('names') || {};
+
+    const user = await getUser(db, decodeURIComponent(names));
+
+    const userId = await getIdByUsername(user.userName);
+
+    const aboutHerTexts = [...document.querySelectorAll('#bondingForm textarea')];
+    const aboutHerData = aboutHerTexts.map(textarea => encodeURIComponent(textarea.value));
+    const answers = getSelectedRadioButtons();
+
+    const newFields = {
+        aboutHer: aboutHerData,
+        quizAnswers: answers,
+        quizScore: getScore()
+    };
+
+    updateUserData(userId, newFields);
+
+    checkAnswers();
+}
 
 function createPNG()
 {

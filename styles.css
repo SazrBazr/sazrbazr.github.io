@@ -106,6 +106,19 @@ textarea {
     flex: 1; /* Allow the textarea to take up the remaining space */
 }
 
+.linkField{
+    width: 100%; /* Full width */
+    padding: 10px; /* Padding inside textarea */
+    border: 2px solid var(--button-bg-color); /* Border color */
+    border-radius: 5px; /* Rounded corners */
+    resize: none; /* Disable resizing */
+    background-color: #fff; /* Light background for text area */
+    font-size: 15px;
+    font-family: 'Comic Sans MS', sans-serif; /* Match the font */
+    resize: vertical;
+    margin-bottom: 10px;
+}
+
 
 .userNameDiv {
     display: flex;

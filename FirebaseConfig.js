@@ -1,6 +1,6 @@
 // FirebaseConfig.mjs
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
-import { getFirestore, collection, addDoc, getDocs, query, where } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js";
+import { getFirestore, collection, addDoc, getDocs, query, where, doc, updateDoc } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -60,6 +60,49 @@ export async function getUser(db, userNameData) {
     } catch (e) {
         console.error("Error retrieving document: ", e);
         return null;
+    }
+}
+
+export async function updateUserData(userId, newFields) {
+    try {
+        // Get a reference to the specific user's document
+        const userDocRef = doc(db, "users", userId);
+        
+        // Update the user's document with new fields
+        await updateDoc(userDocRef, newFields);
+
+        console.log("User data updated successfully.");
+    } catch (e) {
+        console.error("Error updating user data: ", e);
+    }
+}
+
+// Function to get the document ID by userName
+export async function getIdByUsername(userName) {
+    try {
+        // Reference the "users" collection
+        const usersCollectionRef = collection(db, "users");
+
+        // Create a query that filters by userName
+        const q = query(usersCollectionRef, where("userName", "==", userName));
+
+        // Get the query snapshot
+        const querySnapshot = await getDocs(q);
+
+        // If a matching document exists
+        if (!querySnapshot.empty) {
+            // Access the first document from the query snapshot
+            const doc = querySnapshot.docs[0]; // In case of multiple results, choose the first one
+
+            // Return the document ID
+            console.log("User ID: ", doc.id);
+            return doc.id; // Document ID
+        } else {
+            console.log("No user found with that username.");
+            return null; // No user found
+        }
+    } catch (e) {
+        console.error("Error getting user by username: ", e);
     }
 }
 
