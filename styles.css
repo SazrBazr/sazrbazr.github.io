@@ -107,31 +107,31 @@ textarea {
 }
 
 
-.emailDiv {
+.userNameDiv {
     display: flex;
     align-items: center;
     margin-top: 10px;
 }
 
-.email-span {
-    background-color: var(--main-bg-color);
-    padding: 8px 12px;
-    border: 2px solid var(--button-hover-bg-color);
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
-    font-size: 18px;
-}
-
-.email-input {
+.userName-input {
     padding: 8px;
     background-color: var(--main-bg-color);
     border: 2px solid var(--button-hover-bg-color);
-    border-right: none;
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
+    border-radius: 5px;
     flex: 1;
     font-size: 18px;
 }
+
+.crushName-input {
+    padding: 8px;
+    background-color: var(--main-bg-color);
+    border: 2px solid var(--button-hover-bg-color);
+    border-radius: 5px;
+    flex: 1;
+    margin-top: 15px;
+    font-size: 18px;
+}
+
 
 /* Modal background overlay */
 .cute-modal {
