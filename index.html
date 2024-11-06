@@ -14,14 +14,12 @@
 
     <div class="container">
 
-        <section id="emailSection" class="form-section">
-            <h2>Enter your Email here:</h2>
+        <section id="emailSection">
+            <h2>Enter your Name and your crush's name</h2>
+            <h2>to get your unique link:</h2>
             <div class="about-me-card">
-                <h3>Enter your Email here to get the responses</h3>
-                <div class="emailDiv">
-                    <input id = "userEmail" class="form-field email-input" type="email" placeholder="Email">
-                    <span class="email-span">@gmail.com</span>
-                </div>
+                <input id = "userName" class="userName-input" type="text" placeholder="User Name">
+                <input id = "crushName" class="crushName-input" type="text" placeholder="Crush's Name">
             </div>
         </section>
 
@@ -86,17 +84,33 @@
             </div>
         </section>        
 
-        <!-- Generate URL Button -->
-        <div class="gen-button-container">
-            <button class="generate-btn" onclick="generateURL()">Generate Profile</button>
-        </div>
+        <section id="linksSection" hidden>
+            <h2>You can send this to your crush</h2>
+            <div class="quiz-card">
+                <input class="linkField" type="text" value="" id="quizLink" readonly>
+                <button id="quizLinkButton" onclick="copyQuizzURL()">Copy URL</button>
+            </div>
 
+            <h2>Keep this to view the responses</h2>
+            <div class="quiz-card">
+                <input class="linkField" type="text" value="" id="responsesLink" readonly>
+                <button id="responsesLinkButton" onclick="copyResponsesURL()">Copy URL</button>
+            </div>
+        </section>
+
+        <section>
+            <h2 id="errorMessage" hidden>please fill every fiels first</h2>
+            <!-- Generate URL Button -->
+            <div class="gen-button-container">
+                <button id="generateBtn" class="generate-btn" onclick="generateURL()">Generate Profile</button>
+            </div>
+        </section>
     </div>
 
     <footer>
         <p>© 2024 Sari Zrieq, Salem Zreiq</p>
     </footer>
 
-    <script src="script.js"></script>
+    <script type="module" src="script.mjs"></script>
 </body>
 </html>

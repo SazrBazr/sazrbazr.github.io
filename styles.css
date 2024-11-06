@@ -106,32 +106,45 @@ textarea {
     flex: 1; /* Allow the textarea to take up the remaining space */
 }
 
+.linkField{
+    width: 100%; /* Full width */
+    padding: 10px; /* Padding inside textarea */
+    border: 2px solid var(--button-bg-color); /* Border color */
+    border-radius: 5px; /* Rounded corners */
+    resize: none; /* Disable resizing */
+    background-color: #fff; /* Light background for text area */
+    font-size: 15px;
+    font-family: 'Comic Sans MS', sans-serif; /* Match the font */
+    resize: vertical;
+    margin-bottom: 10px;
+}
 
-.emailDiv {
+
+.userNameDiv {
     display: flex;
     align-items: center;
     margin-top: 10px;
 }
 
-.email-span {
-    background-color: var(--main-bg-color);
-    padding: 8px 12px;
-    border: 2px solid var(--button-hover-bg-color);
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
-    font-size: 18px;
-}
-
-.email-input {
+.userName-input {
     padding: 8px;
     background-color: var(--main-bg-color);
     border: 2px solid var(--button-hover-bg-color);
-    border-right: none;
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
+    border-radius: 5px;
     flex: 1;
     font-size: 18px;
 }
+
+.crushName-input {
+    padding: 8px;
+    background-color: var(--main-bg-color);
+    border: 2px solid var(--button-hover-bg-color);
+    border-radius: 5px;
+    flex: 1;
+    margin-top: 15px;
+    font-size: 18px;
+}
+
 
 /* Modal background overlay */
 .cute-modal {
