@@ -98,23 +98,7 @@ window.copyQuizzURL = async function() {
 
 }
 
-window.copyResponsesURL = async function() { 
-
-    const url = document.getElementById('responsesLink').value;
-
-    navigator.clipboard.writeText(url).then(() => {
-        console.log("Text copied to clipboard");
-    }).catch(err => {
-        console.error("Could not copy text: ", err);
-    });
-
-}
-
 function allFieldsFilled() {
-    // Get values of main inputs
-    const userName = document.getElementById('userName').value.trim();
-    const crushName = document.getElementById('crushName').value.trim();
-    if (!userName || !crushName) return false;
 
     // Check About Me fields
     const aboutMeTexts = [...document.querySelectorAll('#aboutMeSection textarea')];
@@ -144,6 +128,12 @@ function allFieldsFilled() {
 
 
 window.generateURL = async function() { 
+
+    document.getElementById('true').hidden = false;
+    if(allFieldsFilled() == false){
+        document.getElementById('errorMessage').hidden = false;
+        return;
+    }
 
     const aboutMeTexts = [...document.querySelectorAll('#aboutMeSection textarea')];
     const quizItems = [...document.querySelectorAll('.quiz-item')];
@@ -181,10 +171,7 @@ window.generateURL = async function() {
     quizURL.searchParams.set('names', names);
 
     document.getElementById('quizLink').value = quizURL;
-    document.getElementById('linksSection').removeAttribute('hidden');
     document.getElementById('generateBtn').hidden = true;
-
-    //window.location.href = url.toString();
 }
 
 function setColors(main, header, btnHover, btn, activeElement) {
