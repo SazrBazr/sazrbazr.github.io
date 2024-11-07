@@ -170,7 +170,9 @@ window.generateURL = async function() {
 
     const urlParams = new URLSearchParams(window.location.search);
 
-    const names = urlParams.get('names') || {};
+    const namesData = urlParams.get('names') || {};
+
+    const names = decodeURIComponent(namesData);
 
     await createUser(db, aboutMeData, quizData, currentcolors, names);
 

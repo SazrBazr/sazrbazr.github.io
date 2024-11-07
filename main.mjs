@@ -41,7 +41,8 @@ window.goToResponses = async function() {
 
     const responsesURL = new URL(window.location.origin + '/personalizedQuiz/Responses.html');
 
-    responsesURL.searchParams.set('names', name1 + "-" + name2);
+    const encodedName = encodeURIComponent((name1 + "-" + name2))
+    responsesURL.searchParams.set('names', encodedName);
 
     window.location.href = responsesURL.toString();
 
