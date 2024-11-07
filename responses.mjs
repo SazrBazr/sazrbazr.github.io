@@ -23,7 +23,7 @@ async function displayContent() {
     aboutHerData.forEach((aboutText, index) => {
         const aboutHerTexts = document.querySelectorAll('#bondingForm textarea');
         if (aboutHerTexts[index]) { 
-            aboutHerTexts[index].textContent = aboutText;
+            aboutHerTexts[index].textContent = decodeURIComponent(aboutText);
         }
     });
 
@@ -75,7 +75,11 @@ async function displayContent() {
 
             svg.appendChild(path);
             label.appendChild(svg);
-            label.appendChild(document.createTextNode(decodeURIComponent(answer)));
+            const ans = document.createElement('textarea');
+            ans.classList.add("answer");
+            ans.readOnly = true;
+            ans.textContent = decodeURIComponent(answer)
+            label.appendChild(ans);
             questionDiv.appendChild(label);
             questionDiv.appendChild(document.createElement('br'));
 
