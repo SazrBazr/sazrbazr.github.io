@@ -181,7 +181,6 @@ window.generateURL = async function() {
     quizURL.searchParams.set('names', names);
 
     document.getElementById('quizLink').value = quizURL;
-    document.getElementById('responsesLink').value = responsesURL;
     document.getElementById('linksSection').removeAttribute('hidden');
     document.getElementById('generateBtn').hidden = true;
 
