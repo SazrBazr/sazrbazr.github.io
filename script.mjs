@@ -166,7 +166,7 @@ window.generateURL = async function() {
 
     await createUser(db, aboutMeData, quizData, currentcolors, names);
 
-    const quizURL = new URL(window.location.origin + '/personalizedQuiz/PersonalizedPage.html');
+    const quizURL = new URL(window.location.origin + '/PersonalizedPage.html');
 
     quizURL.searchParams.set('names', names);
 
