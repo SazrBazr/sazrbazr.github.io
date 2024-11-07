@@ -373,9 +373,6 @@ button[type="submit"] {
 }
 
 footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
     width: 100%;
     text-align: center;
     margin-top: 50px;
@@ -383,6 +380,13 @@ footer {
     background: var(--header-footer-bg-color);
     font-size: 1.2em;
     box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Light shadow */
+}
+
+.footer-main {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
 }
 
 .quiz-card {
