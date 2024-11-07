@@ -13,14 +13,15 @@ async function IsUserFound(name1, name2) {
 
 window.gotToGenerate = async function() { 
 
-    const name1 = document.getElementById('name1').textContent;
-    const name2 = document.getElementById('name2').textContent;
+    const name1 = document.getElementById('name1').value;
+    const name2 = document.getElementById('name2').value;
 
     console.log(name1 + "-" + name2);
 
     const responsesURL = new URL(window.location.origin + '/personalizedQuiz/SetUp.html');
+    const encodedName = encodeURIComponent((name1 + "-" + name2));
 
-    responsesURL.searchParams.set('names', name1 + "-" + name2);
+    responsesURL.searchParams.set('names', encodedName);
 
     window.location.href = responsesURL.toString();
 
@@ -41,7 +42,7 @@ window.goToResponses = async function() {
 
     const responsesURL = new URL(window.location.origin + '/personalizedQuiz/Responses.html');
 
-    const encodedName = encodeURIComponent((name1 + "-" + name2))
+    const encodedName = encodeURIComponent((name1 + "-" + name2));
     responsesURL.searchParams.set('names', encodedName);
 
     window.location.href = responsesURL.toString();
