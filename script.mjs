@@ -129,7 +129,7 @@ function allFieldsFilled() {
 
 window.generateURL = async function() { 
 
-    document.getElementById('true').hidden = false;
+    document.getElementById('errorMessage').hidden = true;
     if(allFieldsFilled() == false){
         document.getElementById('errorMessage').hidden = false;
         return;
