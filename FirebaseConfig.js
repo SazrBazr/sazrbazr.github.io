@@ -17,7 +17,7 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 // Get a list of cities from your database
-export async function createUser(db, aboutMeData, quizData, colorData, userNameData, otherNameData) {
+export async function createUser(db, aboutMeData, quizData, colorData, namesData) {
     
     console.log('User data:', {
         userName: userNameData,
@@ -29,7 +29,7 @@ export async function createUser(db, aboutMeData, quizData, colorData, userNameD
     
     try {
         const docRef = await addDoc(collection(db, "users"), {
-          userName: userNameData + "-" + otherNameData,
+          userName: namesData,
           aboutMe: aboutMeData,
           quiz: quizData,
           color: colorData,

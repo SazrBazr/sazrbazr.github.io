@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Setup Your Profile</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Welcome To Your Personalized Quiz Creator!</h1>
+        <h3>Generate personalized forms and quizzes to get closer!</h3>
+    </header>
+
+    <div class="container">
+
+        <section id="colorSection" class="color-section">
+            <div class="colorList">
+                <h2>Pick a theme:</h2>
+                <div class="quiz-card ">
+                    <ul class="horizontal-list">
+                        <li id="blue" style="background-color:#E1ECF7;" class="clickable-item-active" onclick="itemClicked('Blue')">Blue</li>
+                        <li id="pink" style="background-color:#FCE8E6;" class="clickable-item" onclick="itemClicked('Pink')">Pink</li>
+                        <li id="yellow" style="background-color:#FAEDCB;" class="clickable-item" onclick="itemClicked('Yellow')">Yellow</li>
+                    </ul>
+                    <ul class="horizontal-list">
+                        <li id="green" style="background-color:#C9E4DF;" class="clickable-item" onclick="itemClicked('Green')">Green</li>
+                        <li id="purple" style="background-color:#DBCDF0;" class="clickable-item" onclick="itemClicked('Purple')">Purple</li>
+                        <li id="orange" style="background-color:#F8D9C4;" class="clickable-item" onclick="itemClicked('Orange')">Orange</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Me Section -->
+        <section id="aboutMeSection" class="form-section">
+            <h2>About Me</h2>
+            <div class="about-me-card">
+                <div id="text-container">
+                    <!-- Each About Me item will be added here in card format -->
+                    <div class="about-me-card">
+                        <textarea placeholder="Enter a detail about yourself..."></textarea>
+                    </div>
+                </div>
+                <button class="add-btn" onclick="addAboutMe()">Add Another Detail</button>
+            </div>
+        </section>
+
+        <!-- Quiz Setup Section -->
+        <section id="quizSection" class="form-section">
+            <h2>Create a Quiz</h2>
+            <div class="quiz-card" >
+                <div id="quiz-questions">   
+                    <div class="quiz-card ">
+                        <div class="quiz-item">
+                            <textarea class="question" placeholder="Quiz Question" rows="2"></textarea>
+                            <div class="answer-inputs">
+                                <div class="answer-container">
+                                    <input type="radio" name="question1">
+                                    <textarea class="answer" placeholder="Answer 1"></textarea>
+                                </div>
+                                <div class="answer-container">
+                                    <input type="radio" name="question1">
+                                    <textarea class="answer" placeholder="Answer 2"></textarea>
+                                </div>
+                                <div class="answer-container">
+                                    <input type="radio" name="question1">
+                                    <textarea class="answer" placeholder="Answer 3"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="add-btn" onclick="addQuizSection()">Add Another Question</button>
+            </div>
+        </section>        
+
+        <section id="linksSection" hidden>
+            <h2>You can send this to the other person</h2>
+            <div class="quiz-card">
+                <input class="linkField" type="text" value="" id="quizLink" readonly>
+                <button id="quizLinkButton" onclick="copyQuizzURL()">Copy URL</button>
+            </div>
+
+            <h2>Keep this to view the responses</h2>
+            <div class="quiz-card">
+                <input class="linkField" type="text" value="" id="responsesLink" readonly>
+                <button id="responsesLinkButton" onclick="copyResponsesURL()">Copy URL</button>
+            </div>
+        </section>
+
+        <section>
+            <h2 id="errorMessage" hidden>please fill every fiels first</h2>
+            <!-- Generate URL Button -->
+            <div class="gen-button-container">
+                <button id="generateBtn" class="generate-btn" onclick="generateURL()">Generate Profile</button>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>© 2024 Sari Zrieq, Salem Zreiq</p>
+    </footer>
+
+    <script type="module" src="script.mjs"></script>
+</body>
+</html>

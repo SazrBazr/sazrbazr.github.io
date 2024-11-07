@@ -145,12 +145,6 @@ function allFieldsFilled() {
 
 window.generateURL = async function() { 
 
-    document.getElementById('errorMessage').hidden = true;
-    if (!allFieldsFilled()) {
-        document.getElementById('errorMessage').hidden = false;
-        return;
-    }
-
     const aboutMeTexts = [...document.querySelectorAll('#aboutMeSection textarea')];
     const quizItems = [...document.querySelectorAll('.quiz-item')];
 
@@ -174,18 +168,15 @@ window.generateURL = async function() {
         };
     });
 
-    const userName = encodeURIComponent(document.getElementById('userName').value);
-    const otherName = encodeURIComponent(document.getElementById('crushName').value);
+    const urlParams = new URLSearchParams(window.location.search);
 
-    await createUser(db, aboutMeData, quizData, currentcolors, userName, otherName);
+    const names = urlParams.get('names') || {};
+
+    await createUser(db, aboutMeData, quizData, currentcolors, names);
 
     const quizURL = new URL(window.location.origin + '/personalizedQuiz/PersonalizedPage.html');
 
-    quizURL.searchParams.set('names', userName + "-" + otherName);
-
-    const responsesURL = new URL(window.location.origin + '/personalizedQuiz/Responses.html');
-
-    responsesURL.searchParams.set('names', userName + "-" + otherName);
+    quizURL.searchParams.set('names', names);
 
     document.getElementById('quizLink').value = quizURL;
     document.getElementById('responsesLink').value = responsesURL;

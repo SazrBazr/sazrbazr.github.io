@@ -133,6 +133,7 @@ textarea {
     border-radius: 5px;
     flex: 1;
     font-size: 18px;
+    width: 100%;
 }
 
 .crushName-input {
@@ -143,8 +144,35 @@ textarea {
     flex: 1;
     margin-top: 15px;
     font-size: 18px;
+    width: 100%;
 }
 
+.btn-div{
+    display: flex;
+    gap: 5%; /* Space between items */
+    width: 100%;
+}
+
+.main-btn {
+    background-color: var(--button-bg-color);
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    width:50em;
+    height: 3em;
+}
+
+.main-btn:hover {
+    background-color: var(--button-hover-bg-color);
+}
+
+#menu-section{
+    height: 100%;
+    width: 100%;
+}
 
 /* Modal background overlay */
 .cute-modal {
@@ -345,6 +373,10 @@ button[type="submit"] {
 }
 
 footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
     text-align: center;
     margin-top: 50px;
     padding: 20px; /* More padding for the footer */
@@ -362,9 +394,9 @@ footer {
 }
 
 .container {
-    max-width: 800px;
-    margin: 0 auto;
     padding: 20px;
+    height: 100%;
+    width: 100%;
 }
 
 .gen-button-container {

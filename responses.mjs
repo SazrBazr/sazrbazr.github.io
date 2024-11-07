@@ -1,4 +1,4 @@
-import { getUser, updateUserData, getIdByUsername, db } from './FirebaseConfig.js';
+import { getUser, db } from './FirebaseConfig.js';
 
 async function displayContent() {
     
@@ -83,7 +83,7 @@ async function displayContent() {
                 selectRadio('question' + (index + 1), inputValue, svg);
             }
         });
-        document.getElementById('quizScore').textContent = 'your crush got '+ score + ' out of ' + numOfQuestions; 
+        document.getElementById('quizScore').textContent = 'They got '+ score + ' out of ' + numOfQuestions; 
         quizDisplay.appendChild(questionDiv);
     });
 
