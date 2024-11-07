@@ -18,7 +18,7 @@ window.gotToGenerate = async function() {
 
     console.log(name1 + "-" + name2);
 
-    const responsesURL = new URL(window.location.origin + '/personalizedQuiz/SetUp.html');
+    const responsesURL = new URL(window.location.origin + '/SetUp.html');
     const encodedName = encodeURIComponent((name1 + "-" + name2));
 
     responsesURL.searchParams.set('names', encodedName);
@@ -40,7 +40,7 @@ window.goToResponses = async function() {
         return;
     }
 
-    const responsesURL = new URL(window.location.origin + '/personalizedQuiz/Responses.html');
+    const responsesURL = new URL(window.location.origin + '/Responses.html');
 
     const encodedName = encodeURIComponent((name1 + "-" + name2));
     responsesURL.searchParams.set('names', encodedName);
