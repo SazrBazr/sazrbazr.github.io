@@ -20,8 +20,7 @@ const db = getFirestore(app);
 export async function createUser(db, aboutMeData, quizData, colorData, namesData) {
     
     console.log('User data:', {
-        userName: userNameData,
-        otherName: otherNameData,
+        userName: namesData,
         aboutMe: aboutMeData,
         quiz: quizData,
         color: colorData
