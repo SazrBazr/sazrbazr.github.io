@@ -12,7 +12,7 @@ async function IsUserFound(name1, name2) {
 }
 
 window.gotToGenerate = async function() { 
-    
+
     const name1 = document.getElementById('name1').textContent;
     const name2 = document.getElementById('name2').textContent;
 
@@ -23,7 +23,7 @@ window.gotToGenerate = async function() {
         document.getElementById('error-msg').hidden = true;
     }
 
-    const responsesURL = new URL(window.location.origin + '/personalizedQuiz/Responses.html');
+    const responsesURL = new URL(window.location.origin + '/personalizedQuiz/SetUp.html');
 
     responsesURL.searchParams.set('names', name1 + "-" + name2);
 
