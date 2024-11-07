@@ -28,8 +28,8 @@ window.gotToGenerate = async function() {
 
 window.goToResponses = async function() { 
     
-    const name1 = document.getElementById('name1').textContent;
-    const name2 = document.getElementById('name2').textContent;
+    const name1 = document.getElementById('name1').value;
+    const name2 = document.getElementById('name2').value;
 
     console.log(name1 + "-" + name2);
 
