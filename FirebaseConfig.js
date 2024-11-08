@@ -23,8 +23,7 @@ export async function createUser(db, aboutMeData, quizData, colorData, namesData
         userName: namesData,
         aboutMe: aboutMeData,
         quiz: quizData,
-        color: colorData,
-        createdAt: serverTimestamp()
+        color: colorData
     });    
     
     try {
@@ -33,6 +32,7 @@ export async function createUser(db, aboutMeData, quizData, colorData, namesData
           aboutMe: aboutMeData,
           quiz: quizData,
           color: colorData,
+          createdAt: serverTimestamp(),
         });
         console.log("Document written with ID: ", docRef.id);
         return docRef.id; // Ensure it returns the document ID
