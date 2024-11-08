@@ -23,7 +23,8 @@ export async function createUser(db, aboutMeData, quizData, colorData, namesData
         userName: namesData,
         aboutMe: aboutMeData,
         quiz: quizData,
-        color: colorData
+        color: colorData,
+        createdAt: serverTimestamp()
     });    
     
     try {
