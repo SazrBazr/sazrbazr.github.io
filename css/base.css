@@ -1,0 +1,99 @@
+/* base.css - Core styles and variables */
+:root {
+    --main-bg-color: #E1ECF7;
+    --header-footer-bg-color: #AECBEB;
+    --button-bg-color: #83B0E1;
+    --button-hover-bg-color: #71A5DE;
+    --Text-color: #333;
+}
+
+* {
+    box-sizing: border-box;
+    transition: background-color 0.3s;
+    transition: all 0.3s;
+}
+
+body {
+    font-family: 'Comic Sans MS', sans-serif;
+    background-color: var(--main-bg-color);
+    color: var(--Text-color);
+    margin: 0;
+    padding: 0;
+}
+
+section {
+    padding: 20px;
+    text-align: center;
+}
+
+p {
+    font-size: 1.1em;
+}
+
+.container {
+    padding: 20px;
+    height: 100%;
+    width: 100%;
+}
+
+/* Header and Footer Styles */
+header {
+    background: var(--header-footer-bg-color);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-bottom: 5px solid var(--button-hover-bg-color);
+    padding: 20px;
+    text-align: center;
+}
+
+.header-content {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo {
+    width: 50px;
+    height: auto;
+    margin-right: 15px;
+}
+
+.header-text h1, .header-text h3 {
+    margin: 0;
+}
+
+footer {
+    width: 100%;
+    text-align: center;
+    margin-top: 50px;
+    padding: 20px;
+    background: var(--header-footer-bg-color);
+    font-size: 1.2em;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.footer-main {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+/* Responsive Styles */
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 1.8em;
+    }
+    h2 {
+        font-size: 1.5em;
+    }
+    button {
+        font-size: 1.3em;
+    }
+    textarea {
+        font-size: 1.1em;
+    }
+    .custom-heart {
+        font-size: 1.1em;
+    }
+}

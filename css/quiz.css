@@ -1,0 +1,102 @@
+/* quiz.css - Styles for quiz components */
+.quiz-wrapper {
+    background-color: var(--main-bg-color);
+    padding: 20px;
+    border-radius: 15px;
+    max-width: 600px;
+    margin: 0 auto;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    border: 5px solid var(--button-hover-bg-color);
+}
+
+.quiz-button {
+    width: fit-content;
+    padding: 15px;
+}
+
+.quiz-question {
+    margin: 30px auto;
+    width: 100%;
+    max-width: 500px;
+    padding: 20px;
+    background-color: var(--main-bg-color);
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+}
+
+.quiz-question h3 {
+    margin-bottom: 10px;
+}
+
+#quiz svg {
+    width: 30px;
+    height: 30px;
+}
+
+#quiz label {
+    font-size: 1.1em;
+}
+
+.answer-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    gap: 10px;
+}
+
+.answer-checkbox {
+    margin-right: 5px;
+}
+
+.color-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.colorList {
+    text-align: center;
+}
+
+.horizontal-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+.clickable-item-active {
+    width: 100px;
+    height: 45px;
+    margin: 10px;
+    text-align: center;
+    align-items: center;
+    border: 5px solid var(--button-hover-bg-color);
+    padding: 10px 15px;
+    font-size: 1.1em;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: font-size 0.3s;
+    transition: scale 0.3s;
+}
+
+.clickable-item {
+    width: 100px;
+    height: 45px;
+    margin: 10px;
+    text-align: center;
+    align-items: center;
+    padding: 10px 15px;
+    font-size: 1.1em;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: font-size 0.3s;
+    transition: scale 0.3s;
+}
+
+.clickable-item:hover {
+    scale: 120%;
+    font-size: 120%;
+    text-align: center;
+    align-items: center;
+}
