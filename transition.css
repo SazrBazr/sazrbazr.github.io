@@ -1,0 +1,30 @@
+@import 'styles.css';
+
+#fade-background {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: var(--button-bg-color); /* Blue background */
+    z-index: 0;
+    
+    }
+    
+    /* For the Animation */
+    
+    #fade-background
+    {
+      height: 100%;
+      width: 100%;
+      animation: clipAnimation 1s ease-in forwards; /* Animation for the expansion */
+      will-change: clip-path;
+     
+    }
+    
+    @keyframes clipAnimation {
+      from {
+        clip-path: circle(150% at center); /* Start with 0% size */
+      }
+      to {
+        clip-path: circle(0% at center); /* Expand beyond view */
+      }
+    }
