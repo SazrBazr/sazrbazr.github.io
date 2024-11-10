@@ -10,7 +10,7 @@ Welcome to the Personalized Quiz Website! This platform allows you to create, sh
 ## Getting Started
 To start using the Personalized Quiz Website:
 
-1. Visit our website at https://sazrbazr.github.io/personalizedQuiz/.
+1. Visit our website at https://sazrbazr.github.io/.
 2. Follow the instructions to create a new quiz tailored for your crush.
 3. Share your quiz link and have fun!
 
