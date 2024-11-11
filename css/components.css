@@ -33,6 +33,19 @@ button:hover {
     background-color: var(--button-hover-bg-color);
 }
 
+.main-btn.expand-fullscreen {
+    position: relative;
+    
+    transform: translate(-50%, -50%) scale(1); /* Start centered */
+    transform-origin: center; /* Ensure scaling happens from the center */
+    transform: translate(-50%, -50%) scale(50); /* Expands smoothly */
+    opacity: 1; /* Fades out smoothly */
+    transition: transform 0.5s ease-in-out;
+    background-color: var(--button-bg-color);
+    color: var(--button-bg-color);
+    z-index: 1000;
+}
+
 .add-btn, .generate-btn {
     background-color: var(--button-bg-color);
     color: white;
