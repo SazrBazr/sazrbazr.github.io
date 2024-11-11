@@ -1,0 +1,102 @@
+/* components.css - Reusable component styles */
+/* Button Styles */
+button {
+    background-color: var(--button-bg-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 20px;
+    width: fit-content;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+button:hover {
+    background-color: var(--button-hover-bg-color);
+    transform: scale(1.05);
+}
+
+.main-btn {
+    background-color: var(--button-bg-color);
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    width: 10em;
+    height: 3em;
+}
+
+.main-btn:hover {
+    background-color: var(--button-hover-bg-color);
+}
+
+.add-btn, .generate-btn {
+    background-color: var(--button-bg-color);
+    color: white;
+    padding: 20px 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.add-btn:hover, .generate-btn:hover {
+    background-color: var(--button-hover-bg-color);
+}
+
+.remove-btn {
+    background-color: #ff6b6b;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.remove-btn:hover {
+    background-color: #ff4b4b;
+}
+
+/* Card Styles */
+.about-me-card, .quiz-card {
+    padding: 20px;
+    border-radius: 10px;
+    background-color: var(--main-bg-color);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    border: 5px solid var(--button-hover-bg-color);
+    max-width: 500px;
+    margin: 0 auto;
+    margin-bottom: 10px;
+}
+
+.quiz-card
+{
+    border: 1px solid var(--button-hover-bg-color);
+    padding: 20px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    background-color: var(--main-bg-color);
+}
+
+.about-me-card ul {
+    list-style: none;
+    padding: 0;
+}
+
+.about-me-card ul li {
+    font-size: 1.2em;
+    margin: 20px 0px;
+    position: relative;
+}
+
+textarea {
+    flex: 1; /* Make the textarea take up available space */
+    padding: 10px;
+    border: 2px solid orange;
+    border-radius: 5px;
+    resize: none;
+    font-size: 1em;
+}

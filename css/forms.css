@@ -1,0 +1,87 @@
+/* forms.css - Styles for forms and inputs */
+/* Form Styles */
+#bondingForm {
+    background-color: var(--main-bg-color);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    border: 5px solid var(--button-hover-bg-color);
+    max-width: 500px;
+    margin: 20px auto;
+}
+
+.bonding-question {
+    margin-bottom: 15px;
+}
+
+.bonding-question h3 {
+    margin-bottom: 5px;
+}
+
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid var(--button-bg-color);
+    border-radius: 5px;
+    resize: vertical;
+    background-color: #fff;
+    font-size: 15px;
+    font-family: 'Comic Sans MS', sans-serif;
+    margin-bottom: 10px;
+}
+
+textarea:focus {
+    outline: none;
+    border-color: var(--button-hover-bg-color);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.linkField {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid var(--button-bg-color);
+    border-radius: 5px;
+    resize: none;
+    background-color: #fff;
+    font-size: 15px;
+    font-family: 'Comic Sans MS', sans-serif;
+    margin-bottom: 10px;
+}
+
+.userNameDiv {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.userName-input {
+    padding: 8px;
+    background-color: var(--main-bg-color);
+    border: 2px solid var(--button-hover-bg-color);
+    border-radius: 5px;
+    flex: 1;
+    font-size: 18px;
+    width: 100%;
+}
+
+.crushName-input {
+    padding: 8px;
+    background-color: var(--main-bg-color);
+    border: 2px solid var(--button-hover-bg-color);
+    border-radius: 5px;
+    flex: 1;
+    margin-top: 15px;
+    font-size: 18px;
+    width: 100%;
+}
+
+.btn-div {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center;     /* Center vertically */
+    gap: 20px;               /* Optional: adds spacing between buttons */
+}
+
+#quizForm {
+    align-items: center;
+}

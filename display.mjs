@@ -3,13 +3,9 @@ import { getUser, updateUserData, getIdByUsername, db } from './FirebaseConfig.j
 const correctAnswers = {};
 
 async function displayContent() {
-    
     const urlParams = new URLSearchParams(window.location.search);
-
     const names = urlParams.get('names') || {};
-
     const user = await getUser(db, decodeURIComponent(names));
-
     const aboutMeData = user.aboutMe;
     const quizData = user.quiz;
     const currentcolors = user.color;
@@ -32,16 +28,21 @@ async function displayContent() {
         const question = quizItem.question;
         const answers = quizItem.answers;
         const correctAnswerIndex = quizItem.correctAnswerIndex;
-
         const questionDiv = document.createElement('div');
         questionDiv.classList.add('quiz-question');
+
         const ques = document.createElement('h3');
         ques.textContent = (index + 1) + '.' + decodeURIComponent(question);
         questionDiv.appendChild(ques);
 
         answers.forEach((answer, idx) => {
+
+            const answerContainer = document.createElement('div');
+            answerContainer.classList.add('answer-container');
+
             const label = document.createElement('label');
             label.classList.add('custom-heart');
+
             const input = document.createElement('input');
             input.type = 'radio';
             input.name = 'question' + (index + 1);
@@ -70,12 +71,16 @@ async function displayContent() {
             path.setAttribute("fill", "white");
             path.setAttribute("stroke", "#FE251B");
             path.setAttribute("stroke-width", "2");
-
             svg.appendChild(path);
-            label.appendChild(svg);
-            label.appendChild(document.createTextNode(decodeURIComponent(answer)));
-            questionDiv.appendChild(label);
-            questionDiv.appendChild(document.createElement('br'));
+
+            // Create the paragraph element for the answer
+            const answerParagraph = document.createElement('p');
+            answerParagraph.textContent = decodeURIComponent(answer);
+
+            answerContainer.appendChild(label);
+            answerContainer.appendChild(svg);
+            answerContainer.appendChild(answerParagraph);
+            questionDiv.appendChild(answerContainer);
         });
 
         quizDisplay.appendChild(questionDiv);
