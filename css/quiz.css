@@ -28,6 +28,13 @@
     margin-bottom: 10px;
 }
 
+.quiz-question p{
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    max-width: 80%;
+    width: 80%;
+}
+
 #quiz svg {
     width: 30px;
     height: 30px;
