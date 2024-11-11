@@ -55,6 +55,11 @@
     margin-right: 5px;
 }
 
+.answer
+{
+    width: 80%;
+}
+
 .color-section {
     display: flex;
     justify-content: center;
