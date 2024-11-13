@@ -97,13 +97,18 @@ button:hover {
 .about-me-card ul {
     list-style: none;
     padding: 0;
+    background-color: white;
+    border-radius: 5px;
+    border: 2px solid var(--button-hover-bg-color);
 }
 
 .about-me-card ul li {
     font-size: 1.2em;
     margin: 20px 0px;
     position: relative;
+    
 }
+
 
 textarea {
     flex: 1; /* Make the textarea take up available space */
