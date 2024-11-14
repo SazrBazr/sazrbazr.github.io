@@ -40,7 +40,7 @@ button:hover {
     transform-origin: center; /* Ensure scaling happens from the center */
     transform: translate(-50%, -50%) scale(50); /* Expands smoothly */
     opacity: 1; /* Fades out smoothly */
-    transition: transform 0.5s ease-in-out;
+    transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1);
     background-color: var(--button-bg-color);
     color: var(--button-bg-color);
     z-index: 1000;
