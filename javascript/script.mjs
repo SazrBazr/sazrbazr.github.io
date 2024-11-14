@@ -32,7 +32,7 @@ window.addAboutMe = function() {
 }
 
 window.addAboutHer = function() { 
-    const textContainer = document.getElementById('text-container');
+    const textContainer = document.getElementById('about-her-container');
 
     // Create a new card for the textarea and remove button
     const aboutHerCard = document.createElement('div');
