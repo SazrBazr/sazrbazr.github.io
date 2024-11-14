@@ -31,6 +31,30 @@ window.addAboutMe = function() {
     textContainer.appendChild(aboutMeCard);
 }
 
+window.addAboutHer = function() { 
+    const textContainer = document.getElementById('text-container');
+
+    // Create a new card for the textarea and remove button
+    const aboutHerCard = document.createElement('div');
+    aboutHerCard.classList.add('about-her-card');
+
+    const newTextArea = document.createElement('textarea');
+    newTextArea.placeholder = 'Enter a question for her...';
+
+    // Create a remove button for the card
+    const removeButton = document.createElement('button');
+    removeButton.textContent = 'Remove';
+    removeButton.classList.add('remove-btn');
+    removeButton.onclick = () => removeElement(aboutHerCard);
+
+    // Append the textarea and remove button to the card
+    aboutHerCard.appendChild(newTextArea);
+    aboutHerCard.appendChild(removeButton);
+
+    // Add the card to the text container
+    textContainer.appendChild(aboutHerCard);
+}
+
 window.addQuizSection = function() { 
     const quizSection = document.getElementById('quiz-questions');
 
