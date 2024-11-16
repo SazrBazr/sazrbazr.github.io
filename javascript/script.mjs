@@ -160,10 +160,15 @@ window.generateURL = async function() {
     }
 
     const aboutMeTexts = [...document.querySelectorAll('#aboutMeSection textarea')];
+    const aboutHerTexts = [...document.querySelectorAll('#aboutHerSection textarea')];
     const quizItems = [...document.querySelectorAll('.quiz-item')];
 
     // Map each textarea value to an encoded array for "aboutMe" data
     const aboutMeData = aboutMeTexts.map(textarea => encodeURIComponent(textarea.value));
+
+
+     // Map each textarea value to an encoded array for "aboutHer" data
+    const aboutHerData = aboutHerTexts.map(textarea => encodeURIComponent(textarea.value));
     
     // Map each quiz item to structured "quizData"
     const quizData = quizItems.map(quizItem => {
@@ -188,7 +193,7 @@ window.generateURL = async function() {
 
     const names = decodeURIComponent(namesData);
 
-    await createUser(db, aboutMeData, quizData, currentcolors, names);
+    await createUser(db, aboutMeData,aboutHerData ,quizData, currentcolors, names);
 
     const quizURL = new URL(window.location.origin + '/PersonalizedPage.html');
 

@@ -7,6 +7,7 @@ async function displayContent() {
     const names = urlParams.get('names') || {};
     const user = await getUser(db, decodeURIComponent(names));
     const aboutMeData = user.aboutMe;
+    const aboutHerData = user.aboutHer;
     const quizData = user.quiz;
     const currentcolors = user.color;
 
@@ -22,6 +23,25 @@ async function displayContent() {
         para.textContent = decodeURIComponent(text);
         aboutMeTextDiv.appendChild(para);
     });
+
+    const aboutHerTextDiv = document.getElementById('aboutHerText');
+    aboutHerData.forEach((text, index) => {
+        const questionDiv = document.createElement('div');
+        questionDiv.classList.add('bonding-question');
+    
+        const questionTitle = document.createElement('h3');
+        questionTitle.textContent = `${index + 1}. ${decodeURIComponent(text)}`;
+        questionDiv.appendChild(questionTitle);
+    
+        const textarea = document.createElement('textarea');
+        textarea.name = `answer-${index}`;
+        textarea.rows = 3;
+        textarea.placeholder = 'Write your answer here...';
+        questionDiv.appendChild(textarea);
+    
+        aboutHerTextDiv.appendChild(questionDiv);
+    });
+
 
     const quizDisplay = document.getElementById('filled-questions');
     quizData.forEach((quizItem, index) => {
@@ -72,11 +92,12 @@ async function displayContent() {
             path.setAttribute("stroke", "#FE251B");
             path.setAttribute("stroke-width", "2");
 
+            svg.appendChild(path);
+
             // Create the paragraph element for the answer
             const answerParagraph = document.createElement('textarea');
             answerParagraph.textContent = decodeURIComponent(answer);
-            answerParagraph.setProperty('readonly', true);
-            answerParagraph.setProperty
+            answerParagraph.readOnly = true;
 
             answerContainer.appendChild(label);
             answerContainer.appendChild(svg);
@@ -216,8 +237,13 @@ window.sumbitResults = async function() {
 
     const userId = await getIdByUsername(user.userName);
 
+    const aboutHerQuestions = [...document.querySelectorAll('#bondingForm h3')];
     const aboutHerTexts = [...document.querySelectorAll('#bondingForm textarea')];
-    const aboutHerData = aboutHerTexts.map(textarea => encodeURIComponent(textarea.value));
+    const aboutHerData = aboutHerQuestions.map((question, index) => ({
+        question: encodeURIComponent(question.textContent),
+        answer: encodeURIComponent(aboutHerTexts[index].value)
+    }));
+    
     const answers = getSelectedRadioButtons();
 
     const newFields = {
