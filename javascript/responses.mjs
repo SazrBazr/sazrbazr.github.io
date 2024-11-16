@@ -20,22 +20,52 @@ async function displayContent() {
     // Display About Her section
     const aboutHerTextDiv = document.getElementById('aboutHerText');
     aboutHerData.forEach((item, index) => {
-        const questionDiv = document.createElement('div');
-        questionDiv.classList.add('bonding-question');
-    
-        const questionTitle = document.createElement('h3');
-        questionTitle.textContent = decodeURIComponent(item.question);
-        questionDiv.appendChild(questionTitle);
-    
-        const textarea = document.createElement('textarea');
-        textarea.name = `answer-${index}`;
-        textarea.rows = 3;
-        textarea.readOnly = true;
-        textarea.value = decodeURIComponent(item.answer);
-        questionDiv.appendChild(textarea);
-    
-        aboutHerTextDiv.appendChild(questionDiv);
+ 
+        if(!item.answer)
+        {
+            const questionDiv = document.createElement('div');
+            questionDiv.classList.add('bonding-question');
+
+            const questions = ["What's something unexpected about you that most people don’t know?",
+                "If you could travel anywhere in the world, where would you go, and why?",
+                "What's your biggest fear, and how do you usually deal with it?"]
+        
+            const questionTitle = document.createElement('h3');
+            questionTitle.textContent = decodeURIComponent(questions[index]);
+            questionDiv.appendChild(questionTitle);
+        
+            const textarea = document.createElement('textarea');
+            textarea.name = `answer-${index}`;
+            textarea.rows = 3;
+            textarea.readOnly = true;
+            textarea.value = decodeURIComponent(item);
+            questionDiv.appendChild(textarea);
+        
+            aboutHerTextDiv.appendChild(questionDiv);
+            console.log("old format");
+            console.log(index);
+        }
+        else
+        {
+            const questionDiv = document.createElement('div');
+            questionDiv.classList.add('bonding-question');
+        
+            const questionTitle = document.createElement('h3');
+            questionTitle.textContent = decodeURIComponent(item.question);
+            questionDiv.appendChild(questionTitle);
+        
+            const textarea = document.createElement('textarea');
+            textarea.name = `answer-${index}`;
+            textarea.rows = 3;
+            textarea.readOnly = true;
+            textarea.value = decodeURIComponent(item.answer);
+            questionDiv.appendChild(textarea);
+        
+            aboutHerTextDiv.appendChild(questionDiv);
+        }
     });
+
+ 
 
     // Display Quiz section
     let numOfQuestions = 0;
