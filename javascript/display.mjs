@@ -26,21 +26,47 @@ async function displayContent() {
 
     const aboutHerTextDiv = document.getElementById('aboutHerText');
     aboutHerData.forEach((text, index) => {
-        const questionDiv = document.createElement('div');
-        questionDiv.classList.add('bonding-question');
+        
+
+        if(!text.question)
+        {
+            const questionDiv = document.createElement('div');
+            questionDiv.classList.add('bonding-question');
     
-        const questionTitle = document.createElement('h3');
-        questionTitle.textContent = `${index + 1}. ${decodeURIComponent(text)}`;
-        questionDiv.appendChild(questionTitle);
+            const questionTitle = document.createElement('h3');
+            questionTitle.textContent = `${index + 1}. ${decodeURIComponent(text)}`;
+            questionDiv.appendChild(questionTitle);
     
-        const textarea = document.createElement('textarea');
-        textarea.name = `answer-${index}`;
-        textarea.rows = 3;
-        textarea.placeholder = 'Write your answer here...';
-        questionDiv.appendChild(textarea);
+            const textarea = document.createElement('textarea');
+            textarea.name = `answer-${index}`;
+            textarea.rows = 3;
+            textarea.placeholder = 'Write your answer here...';
+            questionDiv.appendChild(textarea);
     
-        aboutHerTextDiv.appendChild(questionDiv);
+            aboutHerTextDiv.appendChild(questionDiv);
+            console.log(text);
+        }
+        else
+        {
+            const questionDiv = document.createElement('div');
+            questionDiv.classList.add('bonding-question');
+    
+            const questionTitle = document.createElement('h3');
+            questionTitle.textContent = decodeURIComponent(text.question);
+            questionDiv.appendChild(questionTitle);
+    
+            const textarea = document.createElement('textarea');
+            textarea.name = `answer-${index}`;
+            textarea.rows = 3;
+            textarea.textContent = decodeURIComponent(text.answer);
+            questionDiv.appendChild(textarea);
+    
+            aboutHerTextDiv.appendChild(questionDiv);
+            console.log(text);
+        }
+
     });
+
 
 
     const quizDisplay = document.getElementById('filled-questions');
