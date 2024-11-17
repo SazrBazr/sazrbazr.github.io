@@ -32,7 +32,7 @@ window.addAboutMe = function() {
 }
 
 // Function to create a new card
-function createCard() {
+function createCard(templateQuestion) {
     const textContainer = document.getElementById('about-her-container');
 
     // Create a new card for the textarea and remove button
@@ -41,6 +41,7 @@ function createCard() {
 
     const newTextArea = document.createElement('textarea');
     newTextArea.placeholder = 'Enter a question for her...';
+    newTextArea.textContent = templateQuestion;
 
     // Create a remove button for the card
     const removeButton = document.createElement('button');
@@ -59,10 +60,13 @@ function createCard() {
 // Add initial cards when page loads
 document.addEventListener('DOMContentLoaded', () => {
     const container = document.getElementById('about-her-container');
-    
+    const questions = ["If you could travel anywhere in the world, where would you go, and why?",
+        "What's your biggest fear, and how do you usually deal with it?"]
+
+
     // Add two additional cards
     for(let i = 0; i < 2; i++) {
-        createCard();
+        createCard(questions[i]);
     }
 });
 
