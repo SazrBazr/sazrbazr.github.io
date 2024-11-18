@@ -58,7 +58,8 @@ async function displayContent() {
             const textarea = document.createElement('textarea');
             textarea.name = `answer-${index}`;
             textarea.rows = 3;
-            textarea.textContent = decodeURIComponent(text.answer);
+            textarea.placeholder = 'Write your answer here...';
+            //textarea.textContent = decodeURIComponent(text.answer);
             questionDiv.appendChild(textarea);
     
             aboutHerTextDiv.appendChild(questionDiv);
