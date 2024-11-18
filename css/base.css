@@ -1,11 +1,4 @@
-/* base.css - Core styles and variables */
-:root {
-    --main-bg-color: #E1ECF7;
-    --header-footer-bg-color: #AECBEB;
-    --button-bg-color: #83B0E1;
-    --button-hover-bg-color: #71A5DE;
-    --Text-color: #333;
-}
+@import 'constants.css';
 
 * {
     box-sizing: border-box;
