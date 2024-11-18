@@ -35,21 +35,11 @@
 
         <section id="bondingQuestions">
             <h2>Tell me about yourself</h2>
+        
             <form id="bondingForm" onsubmit="sendEmail(event)">
-                <div class="bonding-question">
-                    <h3>1. What's something unexpected about you that most people don’t know?</h3>
-                    <textarea name="unexpectedFact" rows="3" placeholder="Write your answer here..." readonly></textarea>
+                <div id="aboutHerText" class="bonding-question">
+                    <!-- Questions dynamically populated by JavaScript -->
                 </div>
-    
-                <div class="bonding-question">
-                    <h3>2. If you could travel anywhere in the world, where would you go, and why?</h3>
-                    <textarea name="dreamDestination" rows="3" placeholder="Write your answer here..." readonly></textarea>
-                </div>
-    
-                <div class="bonding-question">
-                    <h3>3. What's your biggest fear, and how do you usually deal with it?</h3>
-                    <textarea name="biggestFear" rows="3" placeholder="Write your answer here..." readonly></textarea>
-                </div>    
             </form>
         </section>
 

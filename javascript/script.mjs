@@ -31,6 +31,70 @@ window.addAboutMe = function() {
     textContainer.appendChild(aboutMeCard);
 }
 
+// Function to create a new card
+function createCard(templateQuestion) {
+    const textContainer = document.getElementById('about-her-container');
+
+    // Create a new card for the textarea and remove button
+    const aboutHerCard = document.createElement('div');
+    aboutHerCard.classList.add('about-her-card');
+
+    const newTextArea = document.createElement('textarea');
+    newTextArea.placeholder = 'Enter a question for her...';
+    newTextArea.textContent = templateQuestion;
+
+    // Create a remove button for the card
+    const removeButton = document.createElement('button');
+    removeButton.textContent = 'Remove';
+    removeButton.classList.add('remove-btn');
+    removeButton.onclick = () => removeElement(aboutHerCard);
+
+    // Append the textarea and remove button to the card
+    aboutHerCard.appendChild(newTextArea);
+    aboutHerCard.appendChild(removeButton);
+
+    // Add the card to the text container
+    textContainer.appendChild(aboutHerCard);
+}
+
+// Add initial cards when page loads
+document.addEventListener('DOMContentLoaded', () => {
+    const container = document.getElementById('about-her-container');
+    const questions = ["If you could travel anywhere in the world, where would you go, and why?",
+        "What's your biggest fear, and how do you usually deal with it?"]
+
+
+    // Add two additional cards
+    for(let i = 0; i < 2; i++) {
+        createCard(questions[i]);
+    }
+});
+
+
+window.addAboutHer = function() { 
+    const textContainer = document.getElementById('about-her-container');
+
+    // Create a new card for the textarea and remove button
+    const aboutHerCard = document.createElement('div');
+    aboutHerCard.classList.add('about-her-card');
+
+    const newTextArea = document.createElement('textarea');
+    newTextArea.placeholder = 'Enter a question for her...';
+
+    // Create a remove button for the card
+    const removeButton = document.createElement('button');
+    removeButton.textContent = 'Remove';
+    removeButton.classList.add('remove-btn');
+    removeButton.onclick = () => removeElement(aboutHerCard);
+
+    // Append the textarea and remove button to the card
+    aboutHerCard.appendChild(newTextArea);
+    aboutHerCard.appendChild(removeButton);
+
+    // Add the card to the text container
+    textContainer.appendChild(aboutHerCard);
+}
+
 window.addQuizSection = function() { 
     const quizSection = document.getElementById('quiz-questions');
 
@@ -79,6 +143,8 @@ window.addQuizSection = function() {
     // Append the new card to the end of the quiz section
     quizSection.appendChild(quizCard);
 }
+
+
 
 
 // Function to remove an element from the DOM
@@ -136,10 +202,15 @@ window.generateURL = async function() {
     }
 
     const aboutMeTexts = [...document.querySelectorAll('#aboutMeSection textarea')];
+    const aboutHerTexts = [...document.querySelectorAll('#aboutHerSection textarea')];
     const quizItems = [...document.querySelectorAll('.quiz-item')];
 
     // Map each textarea value to an encoded array for "aboutMe" data
     const aboutMeData = aboutMeTexts.map(textarea => encodeURIComponent(textarea.value));
+
+
+     // Map each textarea value to an encoded array for "aboutHer" data
+    const aboutHerData = aboutHerTexts.map(textarea => encodeURIComponent(textarea.value));
     
     // Map each quiz item to structured "quizData"
     const quizData = quizItems.map(quizItem => {
@@ -164,7 +235,7 @@ window.generateURL = async function() {
 
     const names = decodeURIComponent(namesData);
 
-    await createUser(db, aboutMeData, quizData, currentcolors, names);
+    await createUser(db, aboutMeData,aboutHerData ,quizData, currentcolors, names);
 
     const quizURL = new URL(window.location.origin + '/PersonalizedPage.html');
 
