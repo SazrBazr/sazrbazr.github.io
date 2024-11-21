@@ -1,30 +1,40 @@
 @import 'base.css';
 
 #fade-background {
-    
-    background: var(--button-bg-color); /* Blue background */
+    background: var(--button-bg-color);
     position: fixed;
-    width: 100%;
+    display: flex; /* Added */
+    justify-content: center; /* Added */
+    align-items: center; /* Added */
+    width: 100%; /* Fixed */
     height: 100%;
     z-index: 0;
-    
+    will-change: clip-path;
+}
+
+@keyframes clipAnimation {
+    from {
+        clip-path: circle(150% at center);
     }
-    
-    /* For the Animation */
-    
-    #fade-background
-    {
-      height: 100%;
-      width: 100%;
-      will-change: clip-path;
-     
+    to {
+        clip-path: circle(0% at center);
     }
-    
-    @keyframes clipAnimation {
-      from {
-        clip-path: circle(150% at center); /* Start with 0% size */
-      }
-      to {
-        clip-path: circle(0% at center); /* Expand beyond view */
-      }
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #3498db;
+    border-radius: 50%;
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
     }
+    100% {
+        transform: rotate(360deg);
+    }
+}
