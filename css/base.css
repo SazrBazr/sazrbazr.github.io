@@ -4,6 +4,8 @@
     box-sizing: border-box;
     transition: background-color 0.3s;
     transition: all 0.3s;
+    overflow-y: scroll; /* Enables vertical scrolling */
+    scrollbar-width: none;
 }
 
 body {
