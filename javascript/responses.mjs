@@ -148,4 +148,14 @@ window.selectRadio = function(questionName, value, svgElement) {
     svgElement.querySelector('path').setAttribute('fill', '#FF4033');
 }
 
-displayContent();
+// Existing code...
+document.addEventListener('DOMContentLoaded', () => {
+    displayContent().then(() => {
+        const fadeBackground = document.getElementById('fade-background');
+        if (fadeBackground) {
+            fadeBackground.style.animation = 'clipAnimation 1s ease-in forwards';
+        } else {
+            console.error('Fade background element not found');
+        }
+    });
+});

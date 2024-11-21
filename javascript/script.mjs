@@ -296,3 +296,12 @@ window.itemClicked = function(color) {
     
 }
 
+// Existing code...
+document.addEventListener('DOMContentLoaded', () => {
+    const fadeBackground = document.getElementById('fade-background');
+    if (fadeBackground) {
+        fadeBackground.style.animation = 'clipAnimation 1s ease-in forwards';
+    } else {
+        console.error('Fade background element not found');
+    }
+});
