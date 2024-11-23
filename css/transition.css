@@ -8,7 +8,7 @@
     align-items: center; /* Added */
     width: 100%; /* Fixed */
     height: 100%;
-    z-index: 0;
+    z-index: 9999;
     will-change: clip-path;
 }
 
